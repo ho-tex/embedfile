@@ -3,6 +3,11 @@
 
 module = "embedfile"
 
+installfiles = {
+'*.sty',
+'*example*.tex',
+'*.dtx','*.pdf'
+}
 textfiles = {"README.md"}
 unpackfiles = {'embedfile.dtx'}
 
@@ -12,6 +17,14 @@ packtdszip  = true
 
 maxprintline=10000
 checkruns = 2
+
+tdslocations={
+"doc/latex/oberdiek/embedfile-example-collection.tex",
+"doc/latex/oberdiek/embedfile-example-plain.tex",
+"doc/latex/oberdiek/embedfile.pdf",
+"source/latex/oberdiek/embedfile.dtx",
+"tex/generic/oberdiek/embedfile.sty"
+}
 
 
 function update_tag(file,content,tagname,tagdate)
