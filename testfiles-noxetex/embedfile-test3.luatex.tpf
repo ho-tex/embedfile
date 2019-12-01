@@ -1,32 +1,34 @@
 %PDF-1.5
 %Ã’¡‘≈ÿ–ƒ∆
 1 0 obj
-<< /Type/EmbeddedFile/Subtype/plain#2Ftext/Params<</ModDate()/Size 63842/CheckSum<C14E6763E6214561DF5FE5E45A88E19A>>> /Length 63842 >>      
+<< /Type/EmbeddedFile/Subtype/plain#2Ftext/Params<</ModDate()/Size 62635/CheckSum<FB82AEC39D2825946E5DDA60F3F1FCB4>>> /Length 62635 >>      
 stream
 % \iffalse meta-comment
 %
 % File: embedfile.dtx
-% Version: 2016/05/15 v2.7
+% Version: 2019/12/15 v2.9
 % Info: Embed files into PDF
 %
-% Copyright (C) 2006-2011 by
-%    Heiko Oberdiek <heiko.oberdiek at googlemail.com>
-%    2016
-%    https://github.com/ho-tex/oberdiek/issues
+% Copyright (C)
+%    2006-2011 Heiko Oberdiek
+%    2016-2019 Oberdiek Package Support Group
+%    https://github.com/ho-tex/embedfile/issues
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either
 % version 1.3c of this license or (at your option) any later
 % version. This version of this license is in
-%    http://www.latex-project.org/lppl/lppl-1-3c.txt
+%    https://www.latex-project.org/lppl/lppl-1-3c.txt
 % and the latest version of this license is in
-%    http://www.latex-project.org/lppl.txt
+%    https://www.latex-project.org/lppl.txt
 % and version 1.3 or later is part of all distributions of
 % LaTeX version 2005/12/01 or later.
 %
 % This work has the LPPL maintenance status "maintained".
 %
-% This Current Maintainer of this work is Heiko Oberdiek.
+% The Current Maintainers of this work are
+% Heiko Oberdiek and the Oberdiek Package Support Group
+% https://github.com/ho-tex/embedfile/issues
 %
 % The Base Interpreter refers to any `TeX-Format',
 % because some files are installed in TDS:tex/generic//.
@@ -40,8 +42,8 @@ stream
 %    embedfile-test4.tex.
 %
 % Distribution:
-%    CTAN:macros/latex/contrib/oberdiek/embedfile.dtx
-%    CTAN:macros/latex/contrib/oberdiek/embedfile.pdf
+%    CTAN:macros/latex/contrib/embedfile/embedfile.dtx
+%    CTAN:macros/latex/contrib/embedfile/embedfile.pdf
 %
 % Unpacking:
 %    (a) If embedfile.ins is present:
@@ -70,16 +72,12 @@ stream
 %       pdflatex embedfile.dtx
 %
 % Installation:
-%    TDS:tex/generic/oberdiek/embedfile.sty
-%    TDS:tex/generic/oberdiek/dtx-attach.sty
-%    TDS:doc/latex/oberdiek/embedfile.pdf
-%    TDS:doc/latex/oberdiek/embedfile-example-plain.tex
-%    TDS:doc/latex/oberdiek/embedfile-example-collection.tex
-%    TDS:doc/latex/oberdiek/test/embedfile-test1.tex
-%    TDS:doc/latex/oberdiek/test/embedfile-test2.tex
-%    TDS:doc/latex/oberdiek/test/embedfile-test3.tex
-%    TDS:doc/latex/oberdiek/test/embedfile-test4.tex
-%    TDS:source/latex/oberdiek/embedfile.dtx
+%    TDS:tex/generic/embedfile/embedfile.sty
+%    TDS:tex/generic/embedfile/dtx-attach.sty
+%    TDS:doc/latex/embedfile/embedfile.pdf
+%    TDS:doc/latex/embedfile/embedfile-example-plain.tex
+%    TDS:doc/latex/embedfile/embedfile-example-collection.tex
+%    TDS:source/latex/embedfile/embedfile.dtx
 %
 %<*ignore>
 \begingroup
@@ -96,7 +94,7 @@ stream
 \input docstrip.tex
 \Msg{************************************************************************}
 \Msg{* Installation}
-\Msg{* Package: embedfile 2016/05/15 v2.7 Embed files into PDF (HO)}
+\Msg{* Package: embedfile 2019/12/15 v2.9 Embed files into PDF (HO)}
 \Msg{************************************************************************}
 \keepsilent
 \askforoverwritefalse
@@ -104,20 +102,23 @@ stream
 \preamble
 This is a generated file.
 Project: embedfile
-Version: 2016/05/15 v2.7
-Copyright (C) 2006-2011 by
-   Heiko Oberdiek <heiko.oberdiek at googlemail.com>
+Version: 2019/12/15 v2.9
+Copyright (C)
+   2006-2011 Heiko Oberdiek
+   2016-2019 Oberdiek Package Support Group
 This work may be distributed and/or modified under the
 conditions of the LaTeX Project Public License, either
 version 1.3c of this license or (at your option) any later
 version. This version of this license is in
-   http://www.latex-project.org/lppl/lppl-1-3c.txt
+   https://www.latex-project.org/lppl/lppl-1-3c.txt
 and the latest version of this license is in
-   http://www.latex-project.org/lppl.txt
+   https://www.latex-project.org/lppl.txt
 and version 1.3 or later is part of all distributions of
 LaTeX version 2005/12/01 or later.
 This work has the LPPL maintenance status "maintained".
-This Current Maintainer of this work is Heiko Oberdiek.
+The Current Maintainers of this work are
+Heiko Oberdiek and the Oberdiek Package Support Group
+https://github.com/ho-tex/embedfile/issues
 The Base Interpreter refers to any `TeX-Format',
 because some files are installed in TDS:tex/generic//.
 This work consists of the main source file embedfile.dtx
@@ -132,22 +133,22 @@ and the derived files
 \generate{%
   \file{embedfile.ins}{\from{embedfile.dtx}{install}}%
   \file{embedfile.drv}{\from{embedfile.dtx}{driver}}%
-  \usedir{tex/generic/oberdiek}%
+  \usedir{tex/generic/embedfile}%
   \file{embedfile.sty}{\from{embedfile.dtx}{package}}%
-  \usedir{tex/latex/oberdiek}%
+  \usedir{tex/latex/embedfile}%
   \file{dtx-attach.sty}{\from{embedfile.dtx}{dtxattach}}%
-  \usedir{doc/latex/oberdiek}%
+  \usedir{doc/latex/embedfile}%
   \file{embedfile-example-plain.tex}{\from{embedfile.dtx}{exampleplain}}%
   \file{embedfile-example-collection.tex}{\from{embedfile.dtx}{examplecollection}}%
-  \usedir{doc/latex/oberdiek/test}%
-  \file{embedfile-test1.tex}{\from{embedfile.dtx}{test1}}%
-  \file{embedfile-test2.tex}{\from{embedfile.dtx}{test2}}%
-  \file{embedfile-test3.tex}{\from{embedfile.dtx}{test3}}%
-  \file{embedfile-test4.tex}{\from{embedfile.dtx}{test4}}%
+%  \usedir{doc/latex/embedfile/test}%
+%  \file{embedfile-test1.tex}{\from{embedfile.dtx}{test1}}%
+%  \file{embedfile-test2.tex}{\from{embedfile.dtx}{test2}}%
+%  \file{embedfile-test3.tex}{\from{embedfile.dtx}{test3}}%
+%  \file{embedfile-test4.tex}{\from{embedfile.dtx}{test4}}%
   \nopreamble
   \nopostamble
-  \usedir{source/latex/oberdiek/catalogue}%
-  \file{embedfile.xml}{\from{embedfile.dtx}{catalogue}}%
+%  \usedir{source/latex/embedfile/catalogue}%
+%  \file{embedfile.xml}{\from{embedfile.dtx}{catalogue}}%
 }
 \catcode32=13\relax% active space
 \let =\space%
@@ -172,7 +173,7 @@ and the derived files
 %<*driver>
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesFile{embedfile.drv}%
-  [2016/05/15 v2.7 Embed files into PDF (HO)]%
+  [2019/12/15 v2.9 Embed files into PDF (HO)]%
 \documentclass{ltxdoc}
 \usepackage{holtxdoc}[2011/11/22]
 \begin{document}
@@ -201,10 +202,9 @@ and the derived files
 % \GetFileInfo{embedfile.drv}
 %
 % \title{The \xpackage{embedfile} package}
-% \date{2016/05/15 v2.7}
+% \date{2019/12/15 v2.9}
 % \author{Heiko Oberdiek\thanks
-% {Please report any issues at https://github.com/ho-tex/oberdiek/issues}\\
-% \xemail{heiko.oberdiek at googlemail.com}}
+% {Please report any issues at \url{https://github.com/ho-tex/embedfile/issues}}}
 %
 % \maketitle
 %
@@ -555,7 +555,7 @@ This example document contains three embedded files.
 \usepackage[bookmarks=false]{hyperref}
 % provides \pdfstringdef that is then used by `title' and
 % other keys.
-\usepackage{embedfile}[2016/05/15]
+\usepackage{embedfile}[2019/12/15]
 \embedfilesetup{
   view=details,
   initialfile=embedfile.pdf
@@ -612,15 +612,15 @@ You need Acrobat Reader 8 or higher.
 %
 % Package \xpackage{dtx-attach} is just a small application of
 % package \xpackage{embedfile}. I am using it for the CTAN
-% documentation of my packages in \CTAN{macros/latex/contrib/oberdiek/}.
+% documentation of my packages in \CTANpkg{oberdiek}.
 % It also serves as small example for the use of the package with \LaTeX.
 %
 %    \begin{macrocode}
 %<*dtxattach>
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{dtx-attach}
-  [2016/05/15 v2.7 Embed \string\jobname.dtx (HO)]%
-\RequirePackage{embedfile}[2016/05/15]
+  [2019/12/15 v2.9 Embed \string\jobname.dtx (HO)]%
+\RequirePackage{embedfile}[2019/12/15]
 \embedfile[%
   stringmethod=escape,%
   mimetype=plain/text,%
@@ -710,7 +710,7 @@ You need Acrobat Reader 8 or higher.
   \fi
 \expandafter\x\csname ver@embedfile.sty\endcsname
 \ProvidesPackage{embedfile}%
-  [2016/05/15 v2.7 Embed files into PDF (HO)]%
+  [2019/12/15 v2.9 Embed files into PDF (HO)]%
 %    \end{macrocode}
 %
 % \subsection{Catcodes}
@@ -790,15 +790,19 @@ You need Acrobat Reader 8 or higher.
 % Luatex compat
 %    \begin{macrocode}
 \ifx\pdfextension\@undefined\else
-  \EmFi@RequirePackage{luatex85}[2016/01/01]
+    \protected\def\pdflastobj {\numexpr\pdffeedback lastobj\relax}
+    \protected\def\pdfnames   {\pdfextension names }
+    \protected\def\pdfobj     {\pdfextension obj }
+    \protected\def\pdfcatalog {\pdfextension catalog }
+    \let\pdfoutput            \outputmode
 \fi
 %    \end{macrocode}
 %
 % \subsection{Check for recent \pdfTeX\ in PDF mode}
 %
-%    Load package \xpackage{ifpdf} and check mode.
+%    Load package \xpackage{iftex} and check mode.
 %    \begin{macrocode}
-\EmFi@RequirePackage{ifpdf}[2007/09/09]
+\EmFi@RequirePackage{iftex}[2019/11/07]
 \ifpdf
 \else
   \EmFi@Error{%
@@ -880,6 +884,11 @@ You need Acrobat Reader 8 or higher.
 %    \begin{macro}{\EmFi@S@desc}
 %    \begin{macrocode}
 \EmFi@temp{desc}
+%    \end{macrocode}
+%    \end{macro}
+%    \begin{macro}{\EmFi@S@afrelationship}
+%    \begin{macrocode}
+\EmFi@temp{afrelationship}
 %    \end{macrocode}
 %    \end{macro}
 %    \begin{macro}{\EmFi@S@moddate}
@@ -1006,6 +1015,10 @@ You need Acrobat Reader 8 or higher.
 %    Description (optional).
 %    \begin{macrocode}
 \EmFi@DefineKey{desc}{}
+%    \end{macrocode}
+%    AFRelationship (mandatory for PDF/A-3 compliance).
+%    \begin{macrocode}
+\EmFi@DefineKey{afrelationship}{}
 %    \end{macrocode}
 %    Method for converting text to PDF strings.
 %    \begin{macrocode}
@@ -1168,6 +1181,7 @@ You need Acrobat Reader 8 or higher.
             \else\ifx\EmFi@type\EmFi@S@number N%
             \else\ifx\EmFi@type\EmFi@S@file F%
             \else\ifx\EmFi@type\EmFi@S@desc Desc%
+            \else\ifx\EmFi@type\EmFi@S@afrelationship AFRelationship%
             \else\ifx\EmFi@type\EmFi@S@moddate ModDate%
             \else\ifx\EmFi@type\EmFi@S@creationdate CreationDate%
             \else\ifx\EmFi@type\EmFi@S@size Size%
@@ -1280,6 +1294,8 @@ You need Acrobat Reader 8 or higher.
     \let\EmFi@type\EmFi@temp
   \else\ifx\EmFi@temp\EmFi@S@desc
     \let\EmFi@type\EmFi@temp
+  \else\ifx\EmFi@temp\EmFi@S@afrelationship
+    \let\EmFi@type\EmFi@temp
   \else\ifx\EmFi@temp\EmFi@S@moddate
     \let\EmFi@type\EmFi@temp
   \else\ifx\EmFi@temp\EmFi@S@creationdate
@@ -1290,9 +1306,9 @@ You need Acrobat Reader 8 or higher.
     \EmFi@Error{%
       Unknown type `\EmFi@temp'.\MessageBreak
       Supported types: `text', `date', `number', `file',\MessageBreak
-      `desc', `moddate', `creationdate', `size'%
+      `desc', `afrelationship', `moddate', `creationdate', `size'%
     }%
-  \fi\fi\fi\fi\fi\fi\fi\fi
+  \fi\fi\fi\fi\fi\fi\fi\fi\fi
 }
 %    \end{macrocode}
 %    \begin{macrocode}
@@ -1392,6 +1408,11 @@ You need Acrobat Reader 8 or higher.
         \else
           \EmFi@convert\EmFi@desc\EmFi@@desc
         \fi
+        \ifx\EmFi@afrelationship\ltx@empty
+          \let\EmFi@@afrelationship\ltx@empty
+        \else
+          \EmFi@convert\EmFi@afrelationship\EmFi@@afrelationship
+        \fi
         \ifEmFi@item
           \let\do\EmFi@do
           \immediate\pdfobj{%
@@ -1429,6 +1450,10 @@ You need Acrobat Reader 8 or higher.
             \ifx\EmFi@@desc\ltx@empty
             \else
               /Desc(\EmFi@@desc)%
+            \fi
+            \ifx\EmFi@@afrelationship\ltx@empty
+            \else
+              /AFRelationship\EmFi@@afrelationship%
             \fi
             /EF<<%
               /F \the\pdflastobj\ltx@space 0 R%
@@ -1552,6 +1577,17 @@ You need Acrobat Reader 8 or higher.
         }%
         \pdfnames{%
           /EmbeddedFiles \the\pdflastobj\ltx@space 0 R%
+        }%
+      \endgroup
+      \begingroup
+        \def\do##1##2{%
+          \ltx@space##2%
+        }%
+        \immediate\pdfobj{%
+          [\EmFi@list]%
+        }%
+        \pdfcatalog{%
+          /AF \the\pdflastobj\ltx@space 0 R%
         }%
       \endgroup
 %    \end{macrocode}
@@ -1796,7 +1832,7 @@ Test (plain-\TeX): {\tt embedfile.dtx} should be embedded.%
 \NeedsTeXFormat{LaTeX2e}
 \let\SavedJobname\jobname
 \def\jobname{embedfile}
-\RequirePackage{dtx-attach}[2016/05/15]
+\RequirePackage{dtx-attach}[2019/12/15]
 \let\jobname\SavedJobname
 \documentclass{minimal}
 \begin{document}
@@ -1846,43 +1882,31 @@ Test (plain-\TeX): {\tt embedfile.dtx} should be embedded.%
 % \subsection{Download}
 %
 % \paragraph{Package.} This package is available on
-% CTAN\footnote{\url{http://ctan.org/pkg/embedfile}}:
+% CTAN\footnote{\CTANpkg{embedfile}}:
 % \begin{description}
-% \item[\CTAN{macros/latex/contrib/oberdiek/embedfile.dtx}] The source file.
-% \item[\CTAN{macros/latex/contrib/oberdiek/embedfile.pdf}] Documentation.
+% \item[\CTAN{macros/latex/contrib/embedfile/embedfile.dtx}] The source file.
+% \item[\CTAN{macros/latex/contrib/embedfile/embedfile.pdf}] Documentation.
 % \end{description}
 %
 %
-% \paragraph{Bundle.} All the packages of the bundle `oberdiek'
+% \paragraph{Bundle.} All the packages of the bundle `embedfile'
 % are also available in a TDS compliant ZIP archive. There
 % the packages are already unpacked and the documentation files
 % are generated. The files and directories obey the TDS standard.
 % \begin{description}
-% \item[\CTAN{install/macros/latex/contrib/oberdiek.tds.zip}]
+% \item[\CTANinstall{install/macros/latex/contrib/embedfile.tds.zip}]
 % \end{description}
 % \emph{TDS} refers to the standard ``A Directory Structure
-% for \TeX\ Files'' (\CTAN{tds/tds.pdf}). Directories
+% for \TeX\ Files'' (\CTANpkg{tds}). Directories
 % with \xfile{texmf} in their name are usually organized this way.
 %
 % \subsection{Bundle installation}
 %
-% \paragraph{Unpacking.} Unpack the \xfile{oberdiek.tds.zip} in the
+% \paragraph{Unpacking.} Unpack the \xfile{embedfile.tds.zip} in the
 % TDS tree (also known as \xfile{texmf} tree) of your choice.
 % Example (linux):
 % \begin{quote}
-%   |unzip oberdiek.tds.zip -d ~/texmf|
-% \end{quote}
-%
-% \paragraph{Script installation.}
-% Check the directory \xfile{TDS:scripts/oberdiek/} for
-% scripts that need further installation steps.
-% Package \xpackage{attachfile2} comes with the Perl script
-% \xfile{pdfatfi.pl} that should be installed in such a way
-% that it can be called as \texttt{pdfatfi}.
-% Example (linux):
-% \begin{quote}
-%   |chmod +x scripts/oberdiek/pdfatfi.pl|\\
-%   |cp scripts/oberdiek/pdfatfi.pl /usr/local/bin/|
+%   |unzip embedfile.tds.zip -d ~/texmf|
 % \end{quote}
 %
 % \subsection{Package installation}
@@ -1900,16 +1924,12 @@ Test (plain-\TeX): {\tt embedfile.dtx} should be embedded.%
 % \begin{quote}
 % \def\t{^^A
 % \begin{tabular}{@{}>{\ttfamily}l@{ $\rightarrow$ }>{\ttfamily}l@{}}
-%   embedfile.sty & tex/generic/oberdiek/embedfile.sty\\
-%   dtx-attach.sty & tex/generic/oberdiek/dtx-attach.sty\\
-%   embedfile.pdf & doc/latex/oberdiek/embedfile.pdf\\
-%   embedfile-example-plain.tex & doc/latex/oberdiek/embedfile-example-plain.tex\\
-%   embedfile-example-collection.tex & doc/latex/oberdiek/embedfile-example-collection.tex\\
-%   test/embedfile-test1.tex & doc/latex/oberdiek/test/embedfile-test1.tex\\
-%   test/embedfile-test2.tex & doc/latex/oberdiek/test/embedfile-test2.tex\\
-%   test/embedfile-test3.tex & doc/latex/oberdiek/test/embedfile-test3.tex\\
-%   test/embedfile-test4.tex & doc/latex/oberdiek/test/embedfile-test4.tex\\
-%   embedfile.dtx & source/latex/oberdiek/embedfile.dtx\\
+%   embedfile.sty & tex/generic/embedfile/embedfile.sty\\
+%   dtx-attach.sty & tex/generic/embedfile/dtx-attach.sty\\
+%   embedfile.pdf & doc/latex/embedfile/embedfile.pdf\\
+%   embedfile-example-plain.tex & doc/latex/embedfile/embedfile-example-plain.tex\\
+%   embedfile-example-collection.tex & doc/latex/embedfile/embedfile-example-collection.tex\\
+%   embedfile.dtx & source/latex/embedfile/embedfile.dtx\\
 % \end{tabular}^^A
 % }^^A
 % \sbox0{\t}^^A
@@ -1978,21 +1998,11 @@ Test (plain-\TeX): {\tt embedfile.dtx} should be embedded.%
 % \subsection{Refresh file name databases}
 %
 % If your \TeX~distribution
-% (\teTeX, \mikTeX, \dots) relies on file name databases, you must refresh
-% these. For example, \teTeX\ users run \verb|texhash| or
+% (\TeX\,Live, \mikTeX, \dots) relies on file name databases, you must refresh
+% these. For example, \TeX\,Live\ users run \verb|texhash| or
 % \verb|mktexlsr|.
 %
 % \subsection{Some details for the interested}
-%
-% \paragraph{Attached source.}
-%
-% The PDF documentation on CTAN also includes the
-% \xfile{.dtx} source file. It can be extracted by
-% AcrobatReader 6 or higher. Another option is \textsf{pdftk},
-% e.g. unpack the file into the current directory:
-% \begin{quote}
-%   \verb|pdftk embedfile.pdf unpack_files output .|
-% \end{quote}
 %
 % \paragraph{Unpacking with \LaTeX.}
 % The \xfile{.dtx} chooses its action depending on the format:
@@ -2029,55 +2039,16 @@ Test (plain-\TeX): {\tt embedfile.dtx} should be embedded.%
 %\end{verbatim}
 % \end{quote}
 %
-% \section{Catalogue}
-%
-% The following XML file can be used as source for the
-% \href{http://mirror.ctan.org/help/Catalogue/catalogue.html}{\TeX\ Catalogue}.
-% The elements \texttt{caption} and \texttt{description} are imported
-% from the original XML file from the Catalogue.
-% The name of the XML file in the Catalogue is \xfile{embedfile.xml}.
-%    \begin{macrocode}
-%<*catalogue>
-<?xml version='1.0' encoding='us-ascii'?>
-<!DOCTYPE entry SYSTEM 'catalogue.dtd'>
-<entry datestamp='$Date$' modifier='$Author$' id='embedfile'>
-  <name>embedfile</name>
-  <caption>Embed files into PDF.</caption>
-  <authorref id='auth:oberdiek'/>
-  <copyright owner='Heiko Oberdiek' year='2006-2011'/>
-  <license type='lppl1.3'/>
-  <version number='2.7'/>
-  <description>
-    This package embeds files in a PDF document, using the PDF
-    format's embedding operation (note the contrast with the attach
-    operation used by the <xref refid='attachfile'>attachfile</xref>
-    and <xref refid='attachfile2'>attachfile2</xref> packages).
-    Currently only <xref refid='pdftex'>pdfTeX</xref> &gt;=1.30, in
-    PDF mode, is supported.
-    <p/>
-    The package is part of the <xref refid='oberdiek'>oberdiek</xref>
-    bundle.
-  </description>
-  <documentation details='Package documentation'
-      href='ctan:/macros/latex/contrib/oberdiek/embedfile.pdf'/>
-  <ctan file='true' path='/macros/latex/contrib/oberdiek/embedfile.dtx'/>
-  <miktex location='oberdiek'/>
-  <texlive location='oberdiek'/>
-  <install path='/macros/latex/contrib/oberdiek/oberdiek.tds.zip'/>
-</entry>
-%</catalogue>
-%    \end{macrocode}
-%
 % \begin{thebibliography}{9}
 % \bibitem{attachfile}
 %   Scott Pakin: \textit{The \xpackage{attachfile} package};
 %   2005/02/20 v1.2;
-%   \CTAN{macros/latex/contrib/attachfile/}.
+%   \CTANpkg{attachfile}.
 %
 % \bibitem{attachfile2}
 %   Heiko Oberdiek: \textit{The \xpackage{attachfile2} package};
 %   2006/08/16 v2.2;
-%   \CTAN{macros/latex/contrib/oberdiek/attachfile2.pdf}.
+%   \CTAN{macros/latex/contrib/attachfile2/attachfile2.pdf}.
 %
 % \bibitem{pdfspec}
 %   Adobe Systems Incorporated:
@@ -2159,7 +2130,19 @@ Test (plain-\TeX): {\tt embedfile.dtx} should be embedded.%
 %   \end{Version}
 %   \begin{Version}{2016/05/15 v2.7}
 %   \item
-%     luaTeX compatibility
+%     LuaTeX compatibility
+%   \end{Version}
+%   \begin{Version}{2018/11/01 v2.8}
+%   \item
+%     Remove luatex85 package depenency.
+%   \end{Version}
+%   \begin{Version}{2019/12/15 v2.9}
+%    \item
+%     add \verb|/AF| and \verb|/AFrelationship| keys (Andreas Karrenbauer)
+%    \item
+%      add \verb|\pdfcatalog| emulation for Lua\TeX.
+%    \item
+%      update to use \xpackage{iftex}
 %   \end{Version}
 % \end{History}
 %
@@ -2175,7 +2158,10 @@ endobj
 3 0 obj
 <</Names[(embedfile.dtx)2 0 R]>>
 endobj
-6 0 obj
+4 0 obj
+[ 2 0 R]
+endobj
+7 0 obj
 << /Length 526 >>        
 stream
 BT
@@ -2194,27 +2180,27 @@ BT
 ET
 endstream
 endobj
+6 0 obj
+<< /Type /Page /Contents 7 0 R /Resources 5 0 R /MediaBox [ 0 0 595.276 841.89 ] /Parent 11 0 R >>
+endobj
 5 0 obj
-<< /Type /Page /Contents 6 0 R /Resources 4 0 R /MediaBox [ 0 0 595.276 841.89 ] /Parent 10 0 R >>
+<< /Font << /F15 8 0 R /F26 9 0 R /F27 10 0 R >> /ProcSet [ /PDF /Text ] >>
 endobj
-4 0 obj
-<< /Font << /F15 7 0 R /F26 8 0 R /F27 9 0 R >> /ProcSet [ /PDF /Text ] >>
-endobj
-11 0 obj
+12 0 obj
 [ 35 [ 525 ] 47 [ 525 ] 50 [ 525 ] 55 [ 525 ] 66 [ 525 ] 72 [ 525 ] 75 [ 525 ] 88 [ 525 ] 105 [ 525 ] 116 [ 525 ] ]
 endobj
-13 0 obj
+14 0 obj
 << /Length 15 >>         
 [BINARY STREAM]
 endobj
-14 0 obj
+15 0 obj
 << /Subtype /CIDFontType0C /Length 1561 >>       
 [BINARY STREAM]
 endobj
-12 0 obj
-<< /Type /FontDescriptor /FontName /VXSVPV+LMMono10-Regular /Flags 4 /FontBBox [ -451 -316 731 1016 ] /Ascent 1016 /CapHeight 611 /Descent -316 /ItalicAngle 0 /StemV 175 /XHeight 431 /FontFile3 14 0 R /CIDSet 13 0 R >>
+13 0 obj
+<< /Type /FontDescriptor /FontName /VXSVPV+LMMono10-Regular /Flags 4 /FontBBox [ -451 -316 731 1016 ] /Ascent 1016 /CapHeight 611 /Descent -316 /ItalicAngle 0 /StemV 175 /XHeight 431 /FontFile3 15 0 R /CIDSet 14 0 R >>
 endobj
-15 0 obj
+16 0 obj
 << /Length 814 >>        
 stream
 %!PS-Adobe-3.0 Resource-CMap
@@ -2259,27 +2245,27 @@ end
 %%EOF
 endstream
 endobj
-9 0 obj
-<< /Type /Font /Subtype /Type0 /Encoding /Identity-H /BaseFont /VXSVPV+LMMono10-Regular /DescendantFonts [ 16 0 R ] /ToUnicode 15 0 R >>
-endobj
-16 0 obj
-<< /Type /Font /Subtype /CIDFontType0 /BaseFont /VXSVPV+LMMono10-Regular /FontDescriptor 12 0 R /W 11 0 R /CIDSystemInfo << /Registry (Adobe) /Ordering (Identity) /Supplement 0 >> >>
+10 0 obj
+<< /Type /Font /Subtype /Type0 /Encoding /Identity-H /BaseFont /VXSVPV+LMMono10-Regular /DescendantFonts [ 17 0 R ] /ToUnicode 16 0 R >>
 endobj
 17 0 obj
+<< /Type /Font /Subtype /CIDFontType0 /BaseFont /VXSVPV+LMMono10-Regular /FontDescriptor 13 0 R /W 12 0 R /CIDSystemInfo << /Registry (Adobe) /Ordering (Identity) /Supplement 0 >> >>
+endobj
+18 0 obj
 [ 27 [ 843 ] ]
 endobj
-19 0 obj
+20 0 obj
 << /Length 4 >>          
 [BINARY STREAM]
 endobj
-20 0 obj
+21 0 obj
 << /Subtype /CIDFontType0C /Length 621 >>        
 [BINARY STREAM]
 endobj
-18 0 obj
-<< /Type /FontDescriptor /FontName /BYLSJL+LMRoman7-Regular /Flags 4 /FontBBox [ -483 -292 1562 1124 ] /Ascent 1124 /CapHeight 683 /Descent -292 /ItalicAngle 0 /StemV 108 /XHeight 431 /FontFile3 20 0 R /CIDSet 19 0 R >>
+19 0 obj
+<< /Type /FontDescriptor /FontName /BYLSJL+LMRoman7-Regular /Flags 4 /FontBBox [ -483 -292 1562 1124 ] /Ascent 1124 /CapHeight 683 /Descent -292 /ItalicAngle 0 /StemV 108 /XHeight 431 /FontFile3 21 0 R /CIDSet 20 0 R >>
 endobj
-21 0 obj
+22 0 obj
 << /Length 687 >>        
 stream
 %!PS-Adobe-3.0 Resource-CMap
@@ -2315,27 +2301,27 @@ end
 %%EOF
 endstream
 endobj
-8 0 obj
-<< /Type /Font /Subtype /Type0 /Encoding /Identity-H /BaseFont /BYLSJL+LMRoman7-Regular /DescendantFonts [ 22 0 R ] /ToUnicode 21 0 R >>
-endobj
-22 0 obj
-<< /Type /Font /Subtype /CIDFontType0 /BaseFont /BYLSJL+LMRoman7-Regular /FontDescriptor 18 0 R /W 17 0 R /CIDSystemInfo << /Registry (Adobe) /Ordering (Identity) /Supplement 0 >> >>
+9 0 obj
+<< /Type /Font /Subtype /Type0 /Encoding /Identity-H /BaseFont /BYLSJL+LMRoman7-Regular /DescendantFonts [ 23 0 R ] /ToUnicode 22 0 R >>
 endobj
 23 0 obj
+<< /Type /Font /Subtype /CIDFontType0 /BaseFont /BYLSJL+LMRoman7-Regular /FontDescriptor 19 0 R /W 18 0 R /CIDSystemInfo << /Registry (Adobe) /Ordering (Identity) /Supplement 0 >> >>
+endobj
+24 0 obj
 [ 35 [ 556 ] 44 [ 278 ] 47 [ 556 ] 49 [ 681 444 ] 63 [ 556 ] 71 [ 625 278 ] 75 [ 833 ] 81 [ 500 ] 85 [ 389 389 ] 88 [ 278 ] 98 [ 394 ] 104 [ 722 389 ] 109 [ 556 ] 115 [ 750 ] ]
 endobj
-25 0 obj
+26 0 obj
 << /Length 15 >>         
 [BINARY STREAM]
 endobj
-26 0 obj
+27 0 obj
 << /Subtype /CIDFontType0C /Length 2498 >>       
 [BINARY STREAM]
 endobj
-24 0 obj
-<< /Type /FontDescriptor /FontName /XKAESO+LMRoman10-Regular /Flags 4 /FontBBox [ -430 -290 1417 1127 ] /Ascent 1127 /CapHeight 683 /Descent -290 /ItalicAngle 0 /StemV 93 /XHeight 431 /FontFile3 26 0 R /CIDSet 25 0 R >>
+25 0 obj
+<< /Type /FontDescriptor /FontName /XKAESO+LMRoman10-Regular /Flags 4 /FontBBox [ -430 -290 1417 1127 ] /Ascent 1127 /CapHeight 683 /Descent -290 /ItalicAngle 0 /StemV 93 /XHeight 431 /FontFile3 27 0 R /CIDSet 26 0 R >>
 endobj
-27 0 obj
+28 0 obj
 << /Length 931 >>        
 stream
 %!PS-Adobe-3.0 Resource-CMap
@@ -2388,60 +2374,61 @@ end
 %%EOF
 endstream
 endobj
-7 0 obj
-<< /Type /Font /Subtype /Type0 /Encoding /Identity-H /BaseFont /XKAESO+LMRoman10-Regular /DescendantFonts [ 28 0 R ] /ToUnicode 27 0 R >>
-endobj
-28 0 obj
-<< /Type /Font /Subtype /CIDFontType0 /BaseFont /XKAESO+LMRoman10-Regular /FontDescriptor 24 0 R /W 23 0 R /CIDSystemInfo << /Registry (Adobe) /Ordering (Identity) /Supplement 0 >> >>
-endobj
-10 0 obj
-<< /Type /Pages  /Count 1 /Kids [ 5 0 R ] >>
+8 0 obj
+<< /Type /Font /Subtype /Type0 /Encoding /Identity-H /BaseFont /XKAESO+LMRoman10-Regular /DescendantFonts [ 29 0 R ] /ToUnicode 28 0 R >>
 endobj
 29 0 obj
-<< /EmbeddedFiles 3 0 R >>
+<< /Type /Font /Subtype /CIDFontType0 /BaseFont /XKAESO+LMRoman10-Regular /FontDescriptor 25 0 R /W 24 0 R /CIDSystemInfo << /Registry (Adobe) /Ordering (Identity) /Supplement 0 >> >>
+endobj
+11 0 obj
+<< /Type /Pages  /Count 1 /Kids [ 6 0 R ] >>
 endobj
 30 0 obj
-<< /Type /Catalog /Pages 10 0 R /Names 29 0 R >>
+<< /EmbeddedFiles 3 0 R >>
 endobj
 31 0 obj
+<< /Type /Catalog /Pages 11 0 R /Names 30 0 R /AF 4 0 R >>
+endobj
+32 0 obj
 << /Producer (LuaTeX) /Creator (TeX) /Trapped /False >>
 endobj
 xref
-0 32
+0 33
 0000000000 65535 f 
 0000000020 00000 n 
-0000064036 00000 n 
-0000064180 00000 n 
-0000064927 00000 n 
-0000064813 00000 n 
-0000064228 00000 n 
-0000074540 00000 n 
-0000070112 00000 n 
-0000067978 00000 n 
-0000074893 00000 n 
-0000065017 00000 n 
-0000066869 00000 n 
-0000065149 00000 n 
-0000065224 00000 n 
-0000067104 00000 n 
-0000068130 00000 n 
-0000068329 00000 n 
-0000069129 00000 n 
-0000068360 00000 n 
-0000068424 00000 n 
-0000069365 00000 n 
-0000070264 00000 n 
-0000070463 00000 n 
-0000073313 00000 n 
-0000070656 00000 n 
-0000070731 00000 n 
-0000073549 00000 n 
-0000074693 00000 n 
-0000074954 00000 n 
-0000074997 00000 n 
-0000075062 00000 n 
+0000062829 00000 n 
+0000062973 00000 n 
+0000063021 00000 n 
+0000063744 00000 n 
+0000063630 00000 n 
+0000063045 00000 n 
+0000073359 00000 n 
+0000068931 00000 n 
+0000066796 00000 n 
+0000073712 00000 n 
+0000063835 00000 n 
+0000065687 00000 n 
+0000063967 00000 n 
+0000064042 00000 n 
+0000065922 00000 n 
+0000066949 00000 n 
+0000067148 00000 n 
+0000067948 00000 n 
+0000067179 00000 n 
+0000067243 00000 n 
+0000068184 00000 n 
+0000069083 00000 n 
+0000069282 00000 n 
+0000072132 00000 n 
+0000069475 00000 n 
+0000069550 00000 n 
+0000072368 00000 n 
+0000073512 00000 n 
+0000073773 00000 n 
+0000073816 00000 n 
+0000073891 00000 n 
 trailer
-<< /Size 32 /Root 30 0 R /Info 31 0 R >>
+<< /Size 33 /Root 31 0 R /Info 32 0 R >>
 startxref
-75134
+73963
 %%EOF
