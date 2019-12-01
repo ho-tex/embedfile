@@ -817,6 +817,7 @@ You need Acrobat Reader 8 or higher.
     \protected\def\pdflastobj {\numexpr\pdffeedback lastobj\relax}
     \protected\def\pdfnames   {\pdfextension names }
     \protected\def\pdfobj     {\pdfextension obj }
+    \protected\def\pdfcatalog {\pdfextension catalog }
     \let\pdfoutput            \outputmode
 \fi
 %    \end{macrocode}
@@ -2168,6 +2169,8 @@ Test (plain-\TeX): {\tt embedfile.dtx} should be embedded.%
 %   \begin{Version}{2019/12/15 v2.9}
 %    \item
 %     add \verb|/AF| and \verb|/AFrelationship| keys (Andreas Karrenbauer)
+%    \item
+%      add \verb|\pdfcatalog| emulation for Lua\TeX.
 %   \end{Version}
 % \end{History}
 %
