@@ -5,7 +5,8 @@ module = "embedfile"
 
 installfiles = {
 '*.sty',
-'*example*.tex',
+'embedfile-example-collection.tex',
+'embedfile-example-plain.tex',
 '*.dtx','*.pdf'
 }
 textfiles = {"README.md"}
@@ -23,7 +24,8 @@ tdslocations={
 "doc/latex/oberdiek/embedfile-example-plain.tex",
 "doc/latex/oberdiek/embedfile.pdf",
 "source/latex/oberdiek/embedfile.dtx",
-"tex/generic/oberdiek/embedfile.sty"
+"tex/generic/oberdiek/embedfile.sty",
+"tex/latex/oberdiek/dtx-attach.sty"
 }
 
 

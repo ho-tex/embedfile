@@ -7,7 +7,7 @@
 % Copyright (C)
 %    2006-2011 Heiko Oberdiek
 %    2016-2019 Oberdiek Package Support Group
-%    https://github.com/ho-tex/oberdiek/issues
+%    https://github.com/ho-tex/embedfile/issues
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either
@@ -23,7 +23,7 @@
 %
 % The Current Maintainers of this work are
 % Heiko Oberdiek and the Oberdiek Package Support Group
-% https://github.com/ho-tex/oberdiek/issues
+% https://github.com/ho-tex/embedfile/issues
 %
 % The Base Interpreter refers to any `TeX-Format',
 % because some files are installed in TDS:tex/generic//.
@@ -37,8 +37,8 @@
 %    embedfile-test4.tex.
 %
 % Distribution:
-%    CTAN:macros/latex/contrib/oberdiek/embedfile.dtx
-%    CTAN:macros/latex/contrib/oberdiek/embedfile.pdf
+%    CTAN:macros/latex/contrib/embedfile/embedfile.dtx
+%    CTAN:macros/latex/contrib/embedfile/embedfile.pdf
 %
 % Unpacking:
 %    (a) If embedfile.ins is present:
@@ -67,16 +67,12 @@
 %       pdflatex embedfile.dtx
 %
 % Installation:
-%    TDS:tex/generic/oberdiek/embedfile.sty
-%    TDS:tex/generic/oberdiek/dtx-attach.sty
-%    TDS:doc/latex/oberdiek/embedfile.pdf
-%    TDS:doc/latex/oberdiek/embedfile-example-plain.tex
-%    TDS:doc/latex/oberdiek/embedfile-example-collection.tex
-%    TDS:doc/latex/oberdiek/test/embedfile-test1.tex
-%    TDS:doc/latex/oberdiek/test/embedfile-test2.tex
-%    TDS:doc/latex/oberdiek/test/embedfile-test3.tex
-%    TDS:doc/latex/oberdiek/test/embedfile-test4.tex
-%    TDS:source/latex/oberdiek/embedfile.dtx
+%    TDS:tex/generic/embedfile/embedfile.sty
+%    TDS:tex/generic/embedfile/dtx-attach.sty
+%    TDS:doc/latex/embedfile/embedfile.pdf
+%    TDS:doc/latex/embedfile/embedfile-example-plain.tex
+%    TDS:doc/latex/embedfile/embedfile-example-collection.tex
+%    TDS:source/latex/embedfile/embedfile.dtx
 %
 %<*ignore>
 \begingroup
@@ -125,7 +121,7 @@ This work has the LPPL maintenance status "maintained".
 
 The Current Maintainers of this work are
 Heiko Oberdiek and the Oberdiek Package Support Group
-https://github.com/ho-tex/oberdiek/issues
+https://github.com/ho-tex/embedfile/issues
 
 
 The Base Interpreter refers to any `TeX-Format',
@@ -145,21 +141,21 @@ and the derived files
 \generate{%
   \file{embedfile.ins}{\from{embedfile.dtx}{install}}%
   \file{embedfile.drv}{\from{embedfile.dtx}{driver}}%
-  \usedir{tex/generic/oberdiek}%
+  \usedir{tex/generic/embedfile}%
   \file{embedfile.sty}{\from{embedfile.dtx}{package}}%
-  \usedir{tex/latex/oberdiek}%
+  \usedir{tex/latex/embedfile}%
   \file{dtx-attach.sty}{\from{embedfile.dtx}{dtxattach}}%
-  \usedir{doc/latex/oberdiek}%
+  \usedir{doc/latex/embedfile}%
   \file{embedfile-example-plain.tex}{\from{embedfile.dtx}{exampleplain}}%
   \file{embedfile-example-collection.tex}{\from{embedfile.dtx}{examplecollection}}%
-%  \usedir{doc/latex/oberdiek/test}%
+%  \usedir{doc/latex/embedfile/test}%
 %  \file{embedfile-test1.tex}{\from{embedfile.dtx}{test1}}%
 %  \file{embedfile-test2.tex}{\from{embedfile.dtx}{test2}}%
 %  \file{embedfile-test3.tex}{\from{embedfile.dtx}{test3}}%
 %  \file{embedfile-test4.tex}{\from{embedfile.dtx}{test4}}%
   \nopreamble
   \nopostamble
-%  \usedir{source/latex/oberdiek/catalogue}%
+%  \usedir{source/latex/embedfile/catalogue}%
 %  \file{embedfile.xml}{\from{embedfile.dtx}{catalogue}}%
 }
 
@@ -218,7 +214,7 @@ and the derived files
 % \title{The \xpackage{embedfile} package}
 % \date{2019/12/15 v2.9}
 % \author{Heiko Oberdiek\thanks
-% {Please report any issues at \url{https://github.com/ho-tex/oberdiek/issues}}}
+% {Please report any issues at \url{https://github.com/ho-tex/embedfile/issues}}}
 %
 % \maketitle
 %
@@ -1910,17 +1906,17 @@ Test (plain-\TeX): {\tt embedfile.dtx} should be embedded.%
 % \paragraph{Package.} This package is available on
 % CTAN\footnote{\CTANpkg{embedfile}}:
 % \begin{description}
-% \item[\CTAN{macros/latex/contrib/oberdiek/embedfile.dtx}] The source file.
-% \item[\CTAN{macros/latex/contrib/oberdiek/embedfile.pdf}] Documentation.
+% \item[\CTAN{macros/latex/contrib/embedfile/embedfile.dtx}] The source file.
+% \item[\CTAN{macros/latex/contrib/embedfile/embedfile.pdf}] Documentation.
 % \end{description}
 %
 %
-% \paragraph{Bundle.} All the packages of the bundle `oberdiek'
+% \paragraph{Bundle.} All the packages of the bundle `embedfile'
 % are also available in a TDS compliant ZIP archive. There
 % the packages are already unpacked and the documentation files
 % are generated. The files and directories obey the TDS standard.
 % \begin{description}
-% \item[\CTANinstall{install/macros/latex/contrib/oberdiek.tds.zip}]
+% \item[\CTANinstall{install/macros/latex/contrib/embedfile.tds.zip}]
 % \end{description}
 % \emph{TDS} refers to the standard ``A Directory Structure
 % for \TeX\ Files'' (\CTANpkg{tds}). Directories
@@ -1928,11 +1924,11 @@ Test (plain-\TeX): {\tt embedfile.dtx} should be embedded.%
 %
 % \subsection{Bundle installation}
 %
-% \paragraph{Unpacking.} Unpack the \xfile{oberdiek.tds.zip} in the
+% \paragraph{Unpacking.} Unpack the \xfile{embedfile.tds.zip} in the
 % TDS tree (also known as \xfile{texmf} tree) of your choice.
 % Example (linux):
 % \begin{quote}
-%   |unzip oberdiek.tds.zip -d ~/texmf|
+%   |unzip embedfile.tds.zip -d ~/texmf|
 % \end{quote}
 %
 % \subsection{Package installation}
@@ -1950,16 +1946,12 @@ Test (plain-\TeX): {\tt embedfile.dtx} should be embedded.%
 % \begin{quote}
 % \def\t{^^A
 % \begin{tabular}{@{}>{\ttfamily}l@{ $\rightarrow$ }>{\ttfamily}l@{}}
-%   embedfile.sty & tex/generic/oberdiek/embedfile.sty\\
-%   dtx-attach.sty & tex/generic/oberdiek/dtx-attach.sty\\
-%   embedfile.pdf & doc/latex/oberdiek/embedfile.pdf\\
-%   embedfile-example-plain.tex & doc/latex/oberdiek/embedfile-example-plain.tex\\
-%   embedfile-example-collection.tex & doc/latex/oberdiek/embedfile-example-collection.tex\\
-%   test/embedfile-test1.tex & doc/latex/oberdiek/test/embedfile-test1.tex\\
-%   test/embedfile-test2.tex & doc/latex/oberdiek/test/embedfile-test2.tex\\
-%   test/embedfile-test3.tex & doc/latex/oberdiek/test/embedfile-test3.tex\\
-%   test/embedfile-test4.tex & doc/latex/oberdiek/test/embedfile-test4.tex\\
-%   embedfile.dtx & source/latex/oberdiek/embedfile.dtx\\
+%   embedfile.sty & tex/generic/embedfile/embedfile.sty\\
+%   dtx-attach.sty & tex/generic/embedfile/dtx-attach.sty\\
+%   embedfile.pdf & doc/latex/embedfile/embedfile.pdf\\
+%   embedfile-example-plain.tex & doc/latex/embedfile/embedfile-example-plain.tex\\
+%   embedfile-example-collection.tex & doc/latex/embedfile/embedfile-example-collection.tex\\
+%   embedfile.dtx & source/latex/embedfile/embedfile.dtx\\
 % \end{tabular}^^A
 % }^^A
 % \sbox0{\t}^^A
