@@ -824,9 +824,9 @@ You need Acrobat Reader 8 or higher.
 %
 % \subsection{Check for recent \pdfTeX\ in PDF mode}
 %
-%    Load package \xpackage{ifpdf} and check mode.
+%    Load package \xpackage{iftex} and check mode.
 %    \begin{macrocode}
-\EmFi@RequirePackage{ifpdf}[2007/09/09]
+\EmFi@RequirePackage{iftex}[2019/11/07]
 \ifpdf
 \else
   \EmFi@Error{%
@@ -2171,6 +2171,8 @@ Test (plain-\TeX): {\tt embedfile.dtx} should be embedded.%
 %     add \verb|/AF| and \verb|/AFrelationship| keys (Andreas Karrenbauer)
 %    \item
 %      add \verb|\pdfcatalog| emulation for Lua\TeX.
+%    \item
+%      update to use \xpackage{iftex}
 %   \end{Version}
 % \end{History}
 %
