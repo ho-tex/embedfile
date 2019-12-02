@@ -1,7 +1,7 @@
 %PDF-1.5
 %Ã’¡‘≈ÿ–ƒ∆
 1 0 obj
-<< /Type/EmbeddedFile/Subtype/plain#2Ftext/Params<</ModDate()/Size 62635/CheckSum<FB82AEC39D2825946E5DDA60F3F1FCB4>>> /Length 62635 >>      
+<< /Type/EmbeddedFile/Subtype/plain#2Ftext/Params<</ModDate()/Size 57673/CheckSum<B4D27272DFF7DD050B72EC212C063B58>>> /Length 57673 >>      
 stream
 % \iffalse meta-comment
 %
@@ -145,10 +145,6 @@ and the derived files
 %  \file{embedfile-test2.tex}{\from{embedfile.dtx}{test2}}%
 %  \file{embedfile-test3.tex}{\from{embedfile.dtx}{test3}}%
 %  \file{embedfile-test4.tex}{\from{embedfile.dtx}{test4}}%
-  \nopreamble
-  \nopostamble
-%  \usedir{source/latex/embedfile/catalogue}%
-%  \file{embedfile.xml}{\from{embedfile.dtx}{catalogue}}%
 }
 \catcode32=13\relax% active space
 \let =\space%
@@ -183,21 +179,6 @@ and the derived files
 % \fi
 %
 %
-% \CharacterTable
-%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
-%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
-%   Digits        \0\1\2\3\4\5\6\7\8\9
-%   Exclamation   \!     Double quote  \"     Hash (number) \#
-%   Dollar        \$     Percent       \%     Ampersand     \&
-%   Acute accent  \'     Left paren    \(     Right paren   \)
-%   Asterisk      \*     Plus          \+     Comma         \,
-%   Minus         \-     Point         \.     Solidus       \/
-%   Colon         \:     Semicolon     \;     Less than     \<
-%   Equals        \=     Greater than  \>     Question mark \?
-%   Commercial at \@     Left bracket  \[     Backslash     \\
-%   Right bracket \]     Circumflex    \^     Underscore    \_
-%   Grave accent  \`     Left brace    \{     Vertical bar  \|
-%   Right brace   \}     Tilde         \~}
 %
 % \GetFileInfo{embedfile.drv}
 %
@@ -1689,195 +1670,7 @@ You need Acrobat Reader 8 or higher.
 \EmFi@AtEnd%
 %</package>
 %    \end{macrocode}
-%
-% \section{Test}
-%
-% \subsection{Catcode checks for loading}
-%
-%    \begin{macrocode}
-%<*test1>
-%    \end{macrocode}
-%    \begin{macrocode}
-\catcode`\{=1 %
-\catcode`\}=2 %
-\catcode`\#=6 %
-\catcode`\@=11 %
-\expandafter\ifx\csname count@\endcsname\relax
-  \countdef\count@=255 %
-\fi
-\expandafter\ifx\csname @gobble\endcsname\relax
-  \long\def\@gobble#1{}%
-\fi
-\expandafter\ifx\csname @firstofone\endcsname\relax
-  \long\def\@firstofone#1{#1}%
-\fi
-\expandafter\ifx\csname loop\endcsname\relax
-  \expandafter\@firstofone
-\else
-  \expandafter\@gobble
-\fi
-{%
-  \def\loop#1\repeat{%
-    \def\body{#1}%
-    \iterate
-  }%
-  \def\iterate{%
-    \body
-      \let\next\iterate
-    \else
-      \let\next\relax
-    \fi
-    \next
-  }%
-  \let\repeat=\fi
-}%
-\def\RestoreCatcodes{}
-\count@=0 %
-\loop
-  \edef\RestoreCatcodes{%
-    \RestoreCatcodes
-    \catcode\the\count@=\the\catcode\count@\relax
-  }%
-\ifnum\count@<255 %
-  \advance\count@ 1 %
-\repeat
-\def\RangeCatcodeInvalid#1#2{%
-  \count@=#1\relax
-  \loop
-    \catcode\count@=15 %
-  \ifnum\count@<#2\relax
-    \advance\count@ 1 %
-  \repeat
-}
-\def\RangeCatcodeCheck#1#2#3{%
-  \count@=#1\relax
-  \loop
-    \ifnum#3=\catcode\count@
-    \else
-      \errmessage{%
-        Character \the\count@\space
-        with wrong catcode \the\catcode\count@\space
-        instead of \number#3%
-      }%
-    \fi
-  \ifnum\count@<#2\relax
-    \advance\count@ 1 %
-  \repeat
-}
-\def\space{ }
-\expandafter\ifx\csname LoadCommand\endcsname\relax
-  \def\LoadCommand{\input embedfile.sty\relax}%
-\fi
-\def\Test{%
-  \RangeCatcodeInvalid{0}{47}%
-  \RangeCatcodeInvalid{58}{64}%
-  \RangeCatcodeInvalid{91}{96}%
-  \RangeCatcodeInvalid{123}{255}%
-  \catcode`\@=12 %
-  \catcode`\\=0 %
-  \catcode`\%=14 %
-  \LoadCommand
-  \RangeCatcodeCheck{0}{36}{15}%
-  \RangeCatcodeCheck{37}{37}{14}%
-  \RangeCatcodeCheck{38}{47}{15}%
-  \RangeCatcodeCheck{48}{57}{12}%
-  \RangeCatcodeCheck{58}{63}{15}%
-  \RangeCatcodeCheck{64}{64}{12}%
-  \RangeCatcodeCheck{65}{90}{11}%
-  \RangeCatcodeCheck{91}{91}{15}%
-  \RangeCatcodeCheck{92}{92}{0}%
-  \RangeCatcodeCheck{93}{96}{15}%
-  \RangeCatcodeCheck{97}{122}{11}%
-  \RangeCatcodeCheck{123}{255}{15}%
-  \RestoreCatcodes
-}
-\Test
-\csname @@end\endcsname
-\end
-%    \end{macrocode}
-%    \begin{macrocode}
-%</test1>
-%    \end{macrocode}
-%
-% \subsection{Simple test}
-%
-%    \begin{macrocode}
-%<*test2>
-\input embedfile.sty\relax
-\embedfile[%
-  stringmethod=escape,%
-  mimetype=plain/text,%
-  desc={LaTeX docstrip source archive for package `embedfile'},%
-  id={embedfile.dtx}%
-]{embedfile.dtx}
-\nopagenumbers
-Test (plain-\TeX): {\tt embedfile.dtx} should be embedded.%
-\def\Test#1{%
-  \par
-  \embedfileifobjectexists{embedfile.dtx}{#1}{%
-    Object #1 (embedfile.dtx): %
-    \embedfilegetobject{embedfile.dtx}{#1}%
-  }{%
-    \errmessage{Missing object #1 (embedfile.dtx)}%
-  }%
-}
-\Test{EmbeddedFile}
-\Test{Filespec}
-\embedfilefinish
-\bye
-%</test2>
-%    \end{macrocode}
-%    \begin{macrocode}
-%<*test3>
-\NeedsTeXFormat{LaTeX2e}
-\let\SavedJobname\jobname
-\def\jobname{embedfile}
-\RequirePackage{dtx-attach}[2019/12/15]
-\let\jobname\SavedJobname
-\documentclass{minimal}
-\begin{document}
-  Test (\LaTeX): \texttt{embedfile.dtx} should be embedded.%
-\end{document}
-%</test3>
-%    \end{macrocode}
-%
-% \subsection{Test for \iniTeX}
-%
-%    \begin{macrocode}
-%<*test4>
-\catcode`\{=1 %
-\catcode`\}=2 %
-\input ifluatex.sty %
-\ifluatex
-  \directlua{%
-    tex.enableprimitives('', {%
-      'pdflastobj',%
-      'pdfnames',%
-      'pdfobj',%
-      'pdfoutput'%
-    })%
-  }%
-  \ifx\pdfextension\undefined\else
-    \protected\def\pdflastobj {\numexpr\pdffeedback lastobj\relax}
-    \protected\def\pdfnames   {\pdfextension names }
-    \protected\def\pdfobj     {\pdfextension obj }
-    \let\pdfoutput            \outputmode
-  \fi
-\fi
-\pdfoutput=1 %
-\input embedfile.sty %
-\shipout\hbox{}
-\embedfile[%
-  stringmethod=escape,%
-  mimetype=plain/text,%
-  desc={iniTeX source},%
-]{\jobname.tex}
-\embedfilefinish
-\end
-%</test4>
-%    \end{macrocode}
-%
-% \section{Installation}
+%\section{Installation}
 %
 % \subsection{Download}
 %
@@ -2396,39 +2189,39 @@ xref
 0 33
 0000000000 65535 f 
 0000000020 00000 n 
-0000062829 00000 n 
-0000062973 00000 n 
-0000063021 00000 n 
-0000063744 00000 n 
-0000063630 00000 n 
-0000063045 00000 n 
-0000073359 00000 n 
-0000068931 00000 n 
-0000066796 00000 n 
-0000073712 00000 n 
-0000063835 00000 n 
-0000065687 00000 n 
-0000063967 00000 n 
-0000064042 00000 n 
-0000065922 00000 n 
-0000066949 00000 n 
-0000067148 00000 n 
-0000067948 00000 n 
-0000067179 00000 n 
-0000067243 00000 n 
-0000068184 00000 n 
-0000069083 00000 n 
-0000069282 00000 n 
-0000072132 00000 n 
-0000069475 00000 n 
-0000069550 00000 n 
-0000072368 00000 n 
-0000073512 00000 n 
-0000073773 00000 n 
-0000073816 00000 n 
-0000073891 00000 n 
+0000057867 00000 n 
+0000058011 00000 n 
+0000058059 00000 n 
+0000058782 00000 n 
+0000058668 00000 n 
+0000058083 00000 n 
+0000068397 00000 n 
+0000063969 00000 n 
+0000061834 00000 n 
+0000068750 00000 n 
+0000058873 00000 n 
+0000060725 00000 n 
+0000059005 00000 n 
+0000059080 00000 n 
+0000060960 00000 n 
+0000061987 00000 n 
+0000062186 00000 n 
+0000062986 00000 n 
+0000062217 00000 n 
+0000062281 00000 n 
+0000063222 00000 n 
+0000064121 00000 n 
+0000064320 00000 n 
+0000067170 00000 n 
+0000064513 00000 n 
+0000064588 00000 n 
+0000067406 00000 n 
+0000068550 00000 n 
+0000068811 00000 n 
+0000068854 00000 n 
+0000068929 00000 n 
 trailer
 << /Size 33 /Root 31 0 R /Info 32 0 R >>
 startxref
-73963
+69001
 %%EOF
