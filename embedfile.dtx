@@ -1,7 +1,7 @@
 % \iffalse meta-comment
 %
 % File: embedfile.dtx
-% Version: 2019/12/15 v2.9
+% Version: 2019/12/03 v2.9
 % Info: Embed files into PDF
 %
 % Copyright (C)
@@ -89,7 +89,7 @@
 \input docstrip.tex
 \Msg{************************************************************************}
 \Msg{* Installation}
-\Msg{* Package: embedfile 2019/12/15 v2.9 Embed files into PDF (HO)}
+\Msg{* Package: embedfile 2019/12/03 v2.9 Embed files into PDF (HO)}
 \Msg{************************************************************************}
 
 \keepsilent
@@ -101,7 +101,7 @@
 This is a generated file.
 
 Project: embedfile
-Version: 2019/12/15 v2.9
+Version: 2019/12/03 v2.9
 
 Copyright (C)
    2006-2011 Heiko Oberdiek
@@ -179,7 +179,7 @@ and the derived files
 %<*driver>
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesFile{embedfile.drv}%
-  [2019/12/15 v2.9 Embed files into PDF (HO)]%
+  [2019/12/03 v2.9 Embed files into PDF (HO)]%
 \documentclass{ltxdoc}
 \usepackage{holtxdoc}[2011/11/22]
 \begin{document}
@@ -193,7 +193,7 @@ and the derived files
 % \GetFileInfo{embedfile.drv}
 %
 % \title{The \xpackage{embedfile} package}
-% \date{2019/12/15 v2.9}
+% \date{2019/12/03 v2.9}
 % \author{Heiko Oberdiek\thanks
 % {Please report any issues at \url{https://github.com/ho-tex/embedfile/issues}}}
 %
@@ -552,7 +552,7 @@ This example document contains three embedded files.
 \usepackage[bookmarks=false]{hyperref}
 % provides \pdfstringdef that is then used by `title' and
 % other keys.
-\usepackage{embedfile}[2019/12/15]
+\usepackage{embedfile}[2019/12/03]
 \embedfilesetup{
   view=details,
   initialfile=embedfile.pdf
@@ -620,8 +620,8 @@ You need Acrobat Reader 8 or higher.
 %<*dtxattach>
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{dtx-attach}
-  [2019/12/15 v2.9 Embed \string\jobname.dtx (HO)]%
-\RequirePackage{embedfile}[2019/12/15]
+  [2019/12/03 v2.9 Embed \string\jobname.dtx (HO)]%
+\RequirePackage{embedfile}[2019/12/03]
 \embedfile[%
   stringmethod=escape,%
   mimetype=plain/text,%
@@ -711,7 +711,7 @@ You need Acrobat Reader 8 or higher.
   \fi
 \expandafter\x\csname ver@embedfile.sty\endcsname
 \ProvidesPackage{embedfile}%
-  [2019/12/15 v2.9 Embed files into PDF (HO)]%
+  [2019/12/03 v2.9 Embed files into PDF (HO)]%
 %    \end{macrocode}
 %
 % \subsection{Catcodes}
@@ -1949,7 +1949,7 @@ You need Acrobat Reader 8 or higher.
 %   \item
 %     Remove luatex85 package depenency.
 %   \end{Version}
-%   \begin{Version}{2019/12/15 v2.9}
+%   \begin{Version}{2019/12/03 v2.9}
 %    \item
 %     add \verb|/AF| and \verb|/AFrelationship| keys (Andreas Karrenbauer)
 %    \item
