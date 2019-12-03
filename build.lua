@@ -20,12 +20,12 @@ maxprintline=10000
 checkruns = 2
 
 tdslocations={
-"doc/latex/oberdiek/embedfile-example-collection.tex",
-"doc/latex/oberdiek/embedfile-example-plain.tex",
-"doc/latex/oberdiek/embedfile.pdf",
-"source/latex/oberdiek/embedfile.dtx",
-"tex/generic/oberdiek/embedfile.sty",
-"tex/latex/oberdiek/dtx-attach.sty"
+"doc/latex/embedfile/embedfile-example-collection.tex",
+"doc/latex/embedfile/embedfile-example-plain.tex",
+"doc/latex/embedfile/embedfile.pdf",
+"source/latex/embedfile/embedfile.dtx",
+"tex/generic/embedfile/embedfile.sty",
+"tex/latex/embedfile/dtx-attach.sty"
 }
 
 
