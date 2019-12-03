@@ -1,12 +1,12 @@
 %PDF-1.5
 %Ã’¡‘≈ÿ–ƒ∆
 1 0 obj
-<< /Type/EmbeddedFile/Subtype/plain#2Ftext/Params<</ModDate()/Size 57673/CheckSum<B4D27272DFF7DD050B72EC212C063B58>>> /Length 57673 >>      
+<< /Type/EmbeddedFile/Subtype/plain#2Ftext/Params<</ModDate()/Size 57640/CheckSum<D3EFF048A833D6879B602078679473D0>>> /Length 57640 >>      
 stream
 % \iffalse meta-comment
 %
 % File: embedfile.dtx
-% Version: 2019/12/15 v2.9
+% Version: 2019/12/03 v2.9
 % Info: Embed files into PDF
 %
 % Copyright (C)
@@ -94,7 +94,7 @@ stream
 \input docstrip.tex
 \Msg{************************************************************************}
 \Msg{* Installation}
-\Msg{* Package: embedfile 2019/12/15 v2.9 Embed files into PDF (HO)}
+\Msg{* Package: embedfile 2019/12/03 v2.9 Embed files into PDF (HO)}
 \Msg{************************************************************************}
 \keepsilent
 \askforoverwritefalse
@@ -102,7 +102,7 @@ stream
 \preamble
 This is a generated file.
 Project: embedfile
-Version: 2019/12/15 v2.9
+Version: 2019/12/03 v2.9
 Copyright (C)
    2006-2011 Heiko Oberdiek
    2016-2019 Oberdiek Package Support Group
@@ -169,7 +169,7 @@ and the derived files
 %<*driver>
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesFile{embedfile.drv}%
-  [2019/12/15 v2.9 Embed files into PDF (HO)]%
+  [2019/12/03 v2.9 Embed files into PDF (HO)]%
 \documentclass{ltxdoc}
 \usepackage{holtxdoc}[2011/11/22]
 \begin{document}
@@ -183,7 +183,7 @@ and the derived files
 % \GetFileInfo{embedfile.drv}
 %
 % \title{The \xpackage{embedfile} package}
-% \date{2019/12/15 v2.9}
+% \date{2019/12/03 v2.9}
 % \author{Heiko Oberdiek\thanks
 % {Please report any issues at \url{https://github.com/ho-tex/embedfile/issues}}}
 %
@@ -536,7 +536,7 @@ This example document contains three embedded files.
 \usepackage[bookmarks=false]{hyperref}
 % provides \pdfstringdef that is then used by `title' and
 % other keys.
-\usepackage{embedfile}[2019/12/15]
+\usepackage{embedfile}[2019/12/03]
 \embedfilesetup{
   view=details,
   initialfile=embedfile.pdf
@@ -600,8 +600,8 @@ You need Acrobat Reader 8 or higher.
 %<*dtxattach>
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{dtx-attach}
-  [2019/12/15 v2.9 Embed \string\jobname.dtx (HO)]%
-\RequirePackage{embedfile}[2019/12/15]
+  [2019/12/03 v2.9 Embed \string\jobname.dtx (HO)]%
+\RequirePackage{embedfile}[2019/12/03]
 \embedfile[%
   stringmethod=escape,%
   mimetype=plain/text,%
@@ -691,7 +691,7 @@ You need Acrobat Reader 8 or higher.
   \fi
 \expandafter\x\csname ver@embedfile.sty\endcsname
 \ProvidesPackage{embedfile}%
-  [2019/12/15 v2.9 Embed files into PDF (HO)]%
+  [2019/12/03 v2.9 Embed files into PDF (HO)]%
 %    \end{macrocode}
 %
 % \subsection{Catcodes}
@@ -1670,7 +1670,7 @@ You need Acrobat Reader 8 or higher.
 \EmFi@AtEnd%
 %</package>
 %    \end{macrocode}
-%\section{Installation}
+% \section{Installation}
 %
 % \subsection{Download}
 %
@@ -1841,7 +1841,7 @@ You need Acrobat Reader 8 or higher.
 % \bibitem{attachfile2}
 %   Heiko Oberdiek: \textit{The \xpackage{attachfile2} package};
 %   2006/08/16 v2.2;
-%   \CTAN{macros/latex/contrib/attachfile2/attachfile2.pdf}.
+%   \CTANpkg{attachfile2}.
 %
 % \bibitem{pdfspec}
 %   Adobe Systems Incorporated:
@@ -1929,7 +1929,7 @@ You need Acrobat Reader 8 or higher.
 %   \item
 %     Remove luatex85 package depenency.
 %   \end{Version}
-%   \begin{Version}{2019/12/15 v2.9}
+%   \begin{Version}{2019/12/03 v2.9}
 %    \item
 %     add \verb|/AF| and \verb|/AFrelationship| keys (Andreas Karrenbauer)
 %    \item
@@ -2189,39 +2189,39 @@ xref
 0 33
 0000000000 65535 f 
 0000000020 00000 n 
-0000057867 00000 n 
-0000058011 00000 n 
-0000058059 00000 n 
-0000058782 00000 n 
-0000058668 00000 n 
-0000058083 00000 n 
-0000068397 00000 n 
-0000063969 00000 n 
-0000061834 00000 n 
-0000068750 00000 n 
-0000058873 00000 n 
-0000060725 00000 n 
-0000059005 00000 n 
-0000059080 00000 n 
-0000060960 00000 n 
-0000061987 00000 n 
-0000062186 00000 n 
-0000062986 00000 n 
-0000062217 00000 n 
-0000062281 00000 n 
-0000063222 00000 n 
-0000064121 00000 n 
-0000064320 00000 n 
-0000067170 00000 n 
-0000064513 00000 n 
-0000064588 00000 n 
-0000067406 00000 n 
-0000068550 00000 n 
-0000068811 00000 n 
-0000068854 00000 n 
-0000068929 00000 n 
+0000057834 00000 n 
+0000057978 00000 n 
+0000058026 00000 n 
+0000058749 00000 n 
+0000058635 00000 n 
+0000058050 00000 n 
+0000068364 00000 n 
+0000063936 00000 n 
+0000061801 00000 n 
+0000068717 00000 n 
+0000058840 00000 n 
+0000060692 00000 n 
+0000058972 00000 n 
+0000059047 00000 n 
+0000060927 00000 n 
+0000061954 00000 n 
+0000062153 00000 n 
+0000062953 00000 n 
+0000062184 00000 n 
+0000062248 00000 n 
+0000063189 00000 n 
+0000064088 00000 n 
+0000064287 00000 n 
+0000067137 00000 n 
+0000064480 00000 n 
+0000064555 00000 n 
+0000067373 00000 n 
+0000068517 00000 n 
+0000068778 00000 n 
+0000068821 00000 n 
+0000068896 00000 n 
 trailer
 << /Size 33 /Root 31 0 R /Info 32 0 R >>
 startxref
-69001
+68968
 %%EOF
