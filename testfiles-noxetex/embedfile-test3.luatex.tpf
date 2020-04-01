@@ -1,7 +1,7 @@
 %PDF-1.5
 %Ã’¡‘≈ÿ–ƒ∆
 1 0 obj
-<< /Type/EmbeddedFile/Subtype/plain#2Ftext/Params<</ModDate()/Size 57640/CheckSum<D3EFF048A833D6879B602078679473D0>>> /Length 57640 >>      
+<< /Type/EmbeddedFile/Subtype/plain#2Ftext/Params<</ModDate()/Size 57773/CheckSum<3FFBEB3930F7D5EC59806449BD18E220>>> /Length 57773 >>      
 stream
 % \iffalse meta-comment
 %
@@ -1356,6 +1356,7 @@ You need Acrobat Reader 8 or higher.
 %    \end{macro}
 %    \begin{macro}{\EmFi@embedfile}
 %    \begin{macrocode}
+\def\EmFi@removeslash#1{\if/#1\else#1\fi}%
 \def\EmFi@embedfile[#1]#2{%
   \ifEmFi@finished
     \EmFi@Error{%
@@ -1392,7 +1393,8 @@ You need Acrobat Reader 8 or higher.
         \ifx\EmFi@afrelationship\ltx@empty
           \let\EmFi@@afrelationship\ltx@empty
         \else
-          \EmFi@convert\EmFi@afrelationship\EmFi@@afrelationship
+          \expandafter\edef\expandafter\EmFi@@afrelationship\expandafter
+            {\expandafter\EmFi@removeslash\EmFi@afrelationship}
         \fi
         \ifEmFi@item
           \let\do\EmFi@do
@@ -1434,7 +1436,7 @@ You need Acrobat Reader 8 or higher.
             \fi
             \ifx\EmFi@@afrelationship\ltx@empty
             \else
-              /AFRelationship\EmFi@@afrelationship%
+              /AFRelationship/\pdf@escapename{\EmFi@@afrelationship}%
             \fi
             /EF<<%
               /F \the\pdflastobj\ltx@space 0 R%
@@ -1958,17 +1960,17 @@ endobj
 << /Length 526 >>        
 stream
 BT
-/F15 9.96264 Tf
+/F25 9.96264 Tf
 1 0 0 1 91.925 759.927 Tm [<0068>83<003200620069>-333<00550047>]TJ
-/F26 6.97385 Tf
+/F36 6.97385 Tf
 1 0 0 1 120.349 761.699 Tm [<001B>]TJ
-/F15 9.96264 Tf
+/F25 9.96264 Tf
 1 0 0 1 124.733 759.927 Tm [<0068>]TJ
 1 0 0 1 130.266 757.78 Tm [<0031>]TJ
 1 0 0 1 135.805 759.927 Tm [<00730056002C>]TJ
-/F27 9.96264 Tf
+/F37 9.96264 Tf
 1 0 0 1 154.345 759.927 Tm [<0032004B00230032002F00370042004800320058002F00690074>]TJ
-/F15 9.96264 Tf
+/F25 9.96264 Tf
 1 0 0 1 225.658 759.927 Tm [<0062003F0051006D0048002F>-333<0023>-28<0032>-333<0032004B>28<0023>-28<0032002F002F0032002F0058>]TJ
 ET
 endstream
@@ -1977,7 +1979,7 @@ endobj
 << /Type /Page /Contents 7 0 R /Resources 5 0 R /MediaBox [ 0 0 595.276 841.89 ] /Parent 11 0 R >>
 endobj
 5 0 obj
-<< /Font << /F15 8 0 R /F26 9 0 R /F27 10 0 R >> /ProcSet [ /PDF /Text ] >>
+<< /Font << /F25 8 0 R /F36 9 0 R /F37 10 0 R >> /ProcSet [ /PDF /Text ] >>
 endobj
 12 0 obj
 [ 35 [ 525 ] 47 [ 525 ] 50 [ 525 ] 55 [ 525 ] 66 [ 525 ] 72 [ 525 ] 75 [ 525 ] 88 [ 525 ] 105 [ 525 ] 116 [ 525 ] ]
@@ -2189,39 +2191,39 @@ xref
 0 33
 0000000000 65535 f 
 0000000020 00000 n 
-0000057834 00000 n 
-0000057978 00000 n 
-0000058026 00000 n 
-0000058749 00000 n 
-0000058635 00000 n 
-0000058050 00000 n 
-0000068364 00000 n 
-0000063936 00000 n 
-0000061801 00000 n 
-0000068717 00000 n 
-0000058840 00000 n 
-0000060692 00000 n 
-0000058972 00000 n 
-0000059047 00000 n 
-0000060927 00000 n 
-0000061954 00000 n 
-0000062153 00000 n 
-0000062953 00000 n 
-0000062184 00000 n 
-0000062248 00000 n 
-0000063189 00000 n 
-0000064088 00000 n 
-0000064287 00000 n 
-0000067137 00000 n 
-0000064480 00000 n 
-0000064555 00000 n 
-0000067373 00000 n 
-0000068517 00000 n 
-0000068778 00000 n 
-0000068821 00000 n 
-0000068896 00000 n 
+0000057967 00000 n 
+0000058111 00000 n 
+0000058159 00000 n 
+0000058882 00000 n 
+0000058768 00000 n 
+0000058183 00000 n 
+0000068497 00000 n 
+0000064069 00000 n 
+0000061934 00000 n 
+0000068850 00000 n 
+0000058973 00000 n 
+0000060825 00000 n 
+0000059105 00000 n 
+0000059180 00000 n 
+0000061060 00000 n 
+0000062087 00000 n 
+0000062286 00000 n 
+0000063086 00000 n 
+0000062317 00000 n 
+0000062381 00000 n 
+0000063322 00000 n 
+0000064221 00000 n 
+0000064420 00000 n 
+0000067270 00000 n 
+0000064613 00000 n 
+0000064688 00000 n 
+0000067506 00000 n 
+0000068650 00000 n 
+0000068911 00000 n 
+0000068954 00000 n 
+0000069029 00000 n 
 trailer
 << /Size 33 /Root 31 0 R /Info 32 0 R >>
 startxref
-68968
+69101
 %%EOF

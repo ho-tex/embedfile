@@ -1376,6 +1376,7 @@ You need Acrobat Reader 8 or higher.
 %    \end{macro}
 %    \begin{macro}{\EmFi@embedfile}
 %    \begin{macrocode}
+\def\EmFi@removeslash#1{\if/#1\else#1\fi}%
 \def\EmFi@embedfile[#1]#2{%
   \ifEmFi@finished
     \EmFi@Error{%
@@ -1412,7 +1413,8 @@ You need Acrobat Reader 8 or higher.
         \ifx\EmFi@afrelationship\ltx@empty
           \let\EmFi@@afrelationship\ltx@empty
         \else
-          \EmFi@convert\EmFi@afrelationship\EmFi@@afrelationship
+          \expandafter\edef\expandafter\EmFi@@afrelationship\expandafter
+            {\expandafter\EmFi@removeslash\EmFi@afrelationship}
         \fi
         \ifEmFi@item
           \let\do\EmFi@do
@@ -1454,7 +1456,7 @@ You need Acrobat Reader 8 or higher.
             \fi
             \ifx\EmFi@@afrelationship\ltx@empty
             \else
-              /AFRelationship\EmFi@@afrelationship%
+              /AFRelationship/\pdf@escapename{\EmFi@@afrelationship}%
             \fi
             /EF<<%
               /F \the\pdflastobj\ltx@space 0 R%

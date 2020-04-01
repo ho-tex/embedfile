@@ -2,8 +2,8 @@
 %ÐÔÅØ
 1 0 obj
 <<
-/Type/EmbeddedFile/Subtype/plain#2Ftext/Params<</ModDate()/Size 57640/CheckSum<D3EFF048A833D6879B602078679473D0>>>
-/Length 57640     
+/Type/EmbeddedFile/Subtype/plain#2Ftext/Params<</ModDate()/Size 57773/CheckSum<3FFBEB3930F7D5EC59806449BD18E220>>>
+/Length 57773     
 >>
 stream
 % \iffalse meta-comment
@@ -1359,6 +1359,7 @@ You need Acrobat Reader 8 or higher.
 %    \end{macro}
 %    \begin{macro}{\EmFi@embedfile}
 %    \begin{macrocode}
+\def\EmFi@removeslash#1{\if/#1\else#1\fi}%
 \def\EmFi@embedfile[#1]#2{%
   \ifEmFi@finished
     \EmFi@Error{%
@@ -1395,7 +1396,8 @@ You need Acrobat Reader 8 or higher.
         \ifx\EmFi@afrelationship\ltx@empty
           \let\EmFi@@afrelationship\ltx@empty
         \else
-          \EmFi@convert\EmFi@afrelationship\EmFi@@afrelationship
+          \expandafter\edef\expandafter\EmFi@@afrelationship\expandafter
+            {\expandafter\EmFi@removeslash\EmFi@afrelationship}
         \fi
         \ifEmFi@item
           \let\do\EmFi@do
@@ -1437,7 +1439,7 @@ You need Acrobat Reader 8 or higher.
             \fi
             \ifx\EmFi@@afrelationship\ltx@empty
             \else
-              /AFRelationship\EmFi@@afrelationship%
+              /AFRelationship/\pdf@escapename{\EmFi@@afrelationship}%
             \fi
             /EF<<%
               /F \the\pdflastobj\ltx@space 0 R%
@@ -1963,7 +1965,7 @@ endobj
 >>
 stream
 BT
-/F8 9.9626 Tf 91.925 759.927 Td [(T)83(est)-333(\050L)]TJ/F7 6.9738 Tf 28.433 2.042 Td [(A)]TJ/F8 9.9626 Tf 4.386 -2.042 Td [(T)]TJ 5.534 -2.145 Td [(E)]TJ 5.535 2.145 Td [(X\051:)]TJ/F15 9.9626 Tf 18.542 0 Td [(embedfile.dtx)]TJ/F8 9.9626 Tf 71.315 0 Td [(should)-333(b)-28(e)-333(em)27(b)-27(edded.)]TJ
+/F8 9.9626 Tf 91.925 759.927 Td [(T)83(est)-333(\050L)]TJ/F7 6.9738 Tf 28.433 2.042 Td [(A)]TJ/F8 9.9626 Tf 4.386 -2.042 Td [(T)]TJ 5.534 -2.145 Td [(E)]TJ 5.535 2.145 Td [(X\051:)]TJ/F25 9.9626 Tf 18.542 0 Td [(embedfile.dtx)]TJ/F8 9.9626 Tf 71.315 0 Td [(should)-333(b)-28(e)-333(em)27(b)-27(edded.)]TJ
 ET
 endstream
 endobj
@@ -1978,7 +1980,7 @@ endobj
 endobj
 5 0 obj
 <<
-/Font << /F8 8 0 R /F7 9 0 R /F15 10 0 R >>
+/Font << /F8 8 0 R /F7 9 0 R /F25 10 0 R >>
 /ProcSet [ /PDF /Text ]
 >>
 endobj
@@ -2130,33 +2132,33 @@ xref
 0 24
 0000000000 65535 f 
 0000000015 00000 n 
-0000057828 00000 n 
-0000057972 00000 n 
-0000058020 00000 n 
-0000058525 00000 n 
-0000058413 00000 n 
-0000058044 00000 n 
-0000090519 00000 n 
-0000090658 00000 n 
-0000090795 00000 n 
-0000090936 00000 n 
-0000058614 00000 n 
-0000058932 00000 n 
-0000058956 00000 n 
-0000059393 00000 n 
-0000071989 00000 n 
-0000072266 00000 n 
-0000079748 00000 n 
-0000079964 00000 n 
-0000090280 00000 n 
-0000090994 00000 n 
-0000091037 00000 n 
-0000091112 00000 n 
+0000057961 00000 n 
+0000058105 00000 n 
+0000058153 00000 n 
+0000058658 00000 n 
+0000058546 00000 n 
+0000058177 00000 n 
+0000090652 00000 n 
+0000090791 00000 n 
+0000090928 00000 n 
+0000091069 00000 n 
+0000058747 00000 n 
+0000059065 00000 n 
+0000059089 00000 n 
+0000059526 00000 n 
+0000072122 00000 n 
+0000072399 00000 n 
+0000079881 00000 n 
+0000080097 00000 n 
+0000090413 00000 n 
+0000091127 00000 n 
+0000091170 00000 n 
+0000091245 00000 n 
 trailer
 << /Size 24
 /Root 22 0 R
 /Info 23 0 R
  >>
 startxref
-91184
+91317
 %%EOF
