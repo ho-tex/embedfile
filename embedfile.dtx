@@ -288,9 +288,9 @@ and the derived files
 %      to this name, if the file name and the value of \xoption{filespec}
 %      are different.
 %    \item[\xoption{ucfilespec}]
-%      Since PDF 1.7 the file name may be provided in Unicode.
+%      Since PDF 1.7 the file name may be provided in Unicode. It must be provided for PDF/A-3.
 %      The conversion of the option value into a PDF string
-%      is controlled by option \xoption{stringmethod}.
+%      is controlled by option \xoption{stringmethod}. Defaults to filespec.
 %    \item[\xoption{filesystem}]
 %      This sets the entry \verb|/FS| in
 %      the file specification dictionary, see PDF specification
@@ -303,8 +303,10 @@ and the derived files
 %    \item[\xoption{desc}]
 %      The description for the file.
 %    \item[\xoption{afrelationship}]
-%      This adds the /AFRelationship key to the filespec dicrectory. The value is
-%      a pdf name with or without the leading slash.%
+%      This adds the \verb|/AFRelationship| key to the filespec dicrectory. Typical
+%      values are \verb|Source|, \verb|Data|, \verb|Alternative|, \verb|Schema| or
+%      \verb|Unspecified| with or without the leading slash.
+%      Mandatory for PDF/A-3.
 %    \item[\xoption{stringmethod}]
 %      The package must convert the values of the keys \xoption{ucfilespec}
 %      and \xoption{desc} into a PDF string (before version 2.4: \xoption{filespec}
@@ -1404,7 +1406,7 @@ You need Acrobat Reader 8 or higher.
           \pdf@escapestring{\EmFi@filespec}%
         }%
         \ifx\EmFi@ucfilespec\ltx@empty
-          \let\EmFi@@ucfilespec\ltx@empty
+          \EmFi@convert\EmFi@filespec\EmFi@@ucfilespec
         \else
           \EmFi@convert\EmFi@ucfilespec\EmFi@@ucfilespec
         \fi
@@ -1450,6 +1452,7 @@ You need Acrobat Reader 8 or higher.
             \fi
             /F(\EmFi@@filespec)%
             \ifx\EmFi@@ucfilespec\ltx@empty
+              /UF(\EmFi@@filespec)%						
             \else
               /UF(\EmFi@@ucfilespec)%
             \fi
@@ -1965,6 +1968,10 @@ You need Acrobat Reader 8 or higher.
 %   \begin{Version}{2020-04-14 v2.10}
 %   \item Fix issue \#4, the value of afrelationship should not be
 %   converted but name escaped.
+%   \end{Version}
+%   \begin{Version}{2020-04-16 v2.11}
+%   \item Fix issue \#5, the value of \verb|ucfilespec| should default to
+%   \verb|filespec|. Better documentation of the \verb|afrelationship|.
 %   \end{Version}
 % \end{History}
 %
