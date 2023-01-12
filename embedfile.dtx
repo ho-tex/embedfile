@@ -809,12 +809,17 @@ You need Acrobat Reader 8 or higher.
 \EmFi@RequirePackage{iftex}[2019/11/07]
 \ifpdf
 \else
+  \ifdefined\HCode
+  % don't print error message with TeX4ht
+  % it uses it's own commands to emulate the embed file support
+  \else
   \EmFi@Error{%
     Missing pdfTeX in PDF mode%
   }{%
     Currently other drivers are not supported. %
     Package loading is aborted.%
   }%
+  \fi
   \expandafter\EmFi@AtEnd
 \fi%
 %    \end{macrocode}
@@ -1965,6 +1970,10 @@ You need Acrobat Reader 8 or higher.
 %   \begin{Version}{2020-04-14 v2.10}
 %   \item Fix issue \#4, the value of afrelationship should not be
 %   converted but name escaped.
+%   \end{Version}
+%   \begin{Version}{???}
+%   \item don't print error message when the file is compiled using
+      \TeX4ht (thanks Michal Hoftich).
 %   \end{Version}
 % \end{History}
 %
