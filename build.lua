@@ -14,7 +14,7 @@ unpackfiles = {'embedfile.dtx'}
 
 checkconfigs = {"build","config-plain-noxetex", "config-noxetex"}
 
-packtdszip  = true
+packtdszip  = false
 
 maxprintline=10000
 checkruns = 2
