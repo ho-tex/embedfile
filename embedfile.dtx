@@ -785,9 +785,12 @@ You need Acrobat Reader 8 or higher.
 %    \begin{macro}{\EmFi@Error}
 %    \begin{macrocode}
 \EmFi@RequirePackage{infwarerr}[2007/09/09]%
-\def\EmFi@Error{%
-  \@PackageError{embedfile}%
-}
+\ifcsname EmFi@Error\endcsname
+\else
+  \def\EmFi@Error{%
+    \@PackageError{embedfile}%
+  }
+\fi
 %    \end{macrocode}
 %    \end{macro}
 %
@@ -810,7 +813,7 @@ You need Acrobat Reader 8 or higher.
 \ifpdf
 \else
   \EmFi@Error{%
-    Missing pdfTeX in PDF mode%
+    Missing pdfTeX or luaTeX in PDF mode%
   }{%
     Currently other drivers are not supported. %
     Package loading is aborted.%
@@ -1965,6 +1968,10 @@ You need Acrobat Reader 8 or higher.
 %   \begin{Version}{2020-04-14 v2.10}
 %   \item Fix issue \#4, the value of afrelationship should not be
 %   converted but name escaped.
+%   \end{Version}
+%   \begin{Version}{2023-01-12 v2.11}
+%   \item Allow the error message to be changed for better tex4ht compability (PR\#7)
+%   \item Adapted the error message to luatex 
 %   \end{Version}
 % \end{History}
 %
