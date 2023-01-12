@@ -1,12 +1,12 @@
 %PDF-1.5
 %Ã’¡‘≈ÿ–ƒ∆
 1 0 obj
-<< /Type/EmbeddedFile/Subtype/plain#2Ftext/Params<</ModDate()/Size 60673/CheckSum<1732BCF5DEE7BA7DD12C872C032E006E>>> /Length 60673 >>      
+<< /Type/EmbeddedFile/Subtype/plain#2Ftext/Params<</ModDate()/Size 60754/CheckSum<5F57DF3C8E2D0134235FCFE584D48A5F>>> /Length 60754 >>      
 stream
 % \iffalse meta-comment
 %
 % File: embedfile.dtx
-% Version: 2023-01-12 v2.11
+% Version: 2023-01-12 v2.12
 % Info: Embed files into PDF
 %
 % Copyright (C)
@@ -94,7 +94,7 @@ stream
 \input docstrip.tex
 \Msg{************************************************************************}
 \Msg{* Installation}
-\Msg{* Package: embedfile 2023-01-12 v2.11 Embed files into PDF (HO)}
+\Msg{* Package: embedfile 2023-01-12 v2.12 Embed files into PDF (HO)}
 \Msg{************************************************************************}
 \keepsilent
 \askforoverwritefalse
@@ -102,7 +102,7 @@ stream
 \preamble
 This is a generated file.
 Project: embedfile
-Version: 2023-01-12 v2.11
+Version: 2023-01-12 v2.12
 Copyright (C)
    2006-2011 Heiko Oberdiek
    2016-2023 Oberdiek Package Support Group
@@ -169,7 +169,7 @@ and the derived files
 %<*driver>
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesFile{embedfile.drv}%
-  [2023-01-12 v2.11 Embed files into PDF (HO)]%
+  [2023-01-12 v2.12 Embed files into PDF (HO)]%
 \documentclass{ltxdoc}
 \usepackage{holtxdoc}[2011/11/22]
 \begin{document}
@@ -183,7 +183,7 @@ and the derived files
 % \GetFileInfo{embedfile.drv}
 %
 % \title{The \xpackage{embedfile} package}
-% \date{2023-01-12 v2.11}
+% \date{2023-01-12 v2.12}
 % \author{Heiko Oberdiek\thanks
 % {Please report any issues at \url{https://github.com/ho-tex/embedfile/issues}}}
 %
@@ -608,7 +608,7 @@ You need Acrobat Reader 8 or higher.
 %<*dtxattach>
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{dtx-attach}
-  [2023-01-12 v2.11 Embed \string\jobname.dtx (HO)]%
+  [2023-01-12 v2.12 Embed \string\jobname.dtx (HO)]%
 \RequirePackage{embedfile}[2019/12/03]
 \embedfile[%
   stringmethod=escape,%
@@ -699,7 +699,7 @@ You need Acrobat Reader 8 or higher.
   \fi
 \expandafter\x\csname ver@embedfile.sty\endcsname
 \ProvidesPackage{embedfile}%
-  [2023-01-12 v2.11 Embed files into PDF (HO)]%
+  [2023-01-12 v2.12 Embed files into PDF (HO)]%
 %    \end{macrocode}
 %
 % \subsection{Catcodes}
@@ -1951,7 +1951,10 @@ You need Acrobat Reader 8 or higher.
 %   \item Fix issue \#4, the value of afrelationship should not be
 %   converted but name escaped.
 %   \end{Version}
-%   \begin{Version}{2023-01-12 v2.11}
+%   \begin{Version}{2020-04-24 v2.11}
+%   \item Updated
+%   \end{Version}%   
+%   \begin{Version}{2023-01-12 v2.12}
 %   \item Allow the error message to be changed for better tex4ht compability (PR\#7)
 %   \item Adapted the error message to luatex 
 %   \item The /UF key in the filespec dictionary is now set by default (PR\#6)
@@ -2208,39 +2211,39 @@ xref
 0 33
 0000000000 65535 f 
 0000000020 00000 n 
-0000060867 00000 n 
-0000061029 00000 n 
-0000061077 00000 n 
-0000061800 00000 n 
-0000061686 00000 n 
-0000061101 00000 n 
-0000071415 00000 n 
-0000066987 00000 n 
-0000064852 00000 n 
-0000071768 00000 n 
-0000061891 00000 n 
-0000063743 00000 n 
-0000062023 00000 n 
-0000062098 00000 n 
-0000063978 00000 n 
-0000065005 00000 n 
-0000065204 00000 n 
-0000066004 00000 n 
-0000065235 00000 n 
-0000065299 00000 n 
-0000066240 00000 n 
-0000067139 00000 n 
-0000067338 00000 n 
-0000070188 00000 n 
-0000067531 00000 n 
-0000067606 00000 n 
-0000070424 00000 n 
-0000071568 00000 n 
-0000071829 00000 n 
-0000071872 00000 n 
-0000071947 00000 n 
+0000060948 00000 n 
+0000061110 00000 n 
+0000061158 00000 n 
+0000061881 00000 n 
+0000061767 00000 n 
+0000061182 00000 n 
+0000071496 00000 n 
+0000067068 00000 n 
+0000064933 00000 n 
+0000071849 00000 n 
+0000061972 00000 n 
+0000063824 00000 n 
+0000062104 00000 n 
+0000062179 00000 n 
+0000064059 00000 n 
+0000065086 00000 n 
+0000065285 00000 n 
+0000066085 00000 n 
+0000065316 00000 n 
+0000065380 00000 n 
+0000066321 00000 n 
+0000067220 00000 n 
+0000067419 00000 n 
+0000070269 00000 n 
+0000067612 00000 n 
+0000067687 00000 n 
+0000070505 00000 n 
+0000071649 00000 n 
+0000071910 00000 n 
+0000071953 00000 n 
+0000072028 00000 n 
 trailer
 << /Size 33 /Root 31 0 R /Info 32 0 R >>
 startxref
-72019
+72100
 %%EOF
