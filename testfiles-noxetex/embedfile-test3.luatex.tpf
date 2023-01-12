@@ -1,17 +1,17 @@
 %PDF-1.5
 %Ã’¡‘≈ÿ–ƒ∆
 1 0 obj
-<< /Type/EmbeddedFile/Subtype/plain#2Ftext/Params<</ModDate()/Size 60098/CheckSum<12605D936F98DCAD8F239E3B21092B92>>> /Length 60098 >>      
+<< /Type/EmbeddedFile/Subtype/plain#2Ftext/Params<</ModDate()/Size 60673/CheckSum<1732BCF5DEE7BA7DD12C872C032E006E>>> /Length 60673 >>      
 stream
 % \iffalse meta-comment
 %
 % File: embedfile.dtx
-% Version: 2020-04-14 v2.10
+% Version: 2023-01-12 v2.11
 % Info: Embed files into PDF
 %
 % Copyright (C)
 %    2006-2011 Heiko Oberdiek
-%    2016-2020 Oberdiek Package Support Group
+%    2016-2023 Oberdiek Package Support Group
 %    https://github.com/ho-tex/embedfile/issues
 %
 % This work may be distributed and/or modified under the
@@ -94,7 +94,7 @@ stream
 \input docstrip.tex
 \Msg{************************************************************************}
 \Msg{* Installation}
-\Msg{* Package: embedfile 2020-04-14 v2.10 Embed files into PDF (HO)}
+\Msg{* Package: embedfile 2023-01-12 v2.11 Embed files into PDF (HO)}
 \Msg{************************************************************************}
 \keepsilent
 \askforoverwritefalse
@@ -102,10 +102,10 @@ stream
 \preamble
 This is a generated file.
 Project: embedfile
-Version: 2020-04-14 v2.10
+Version: 2023-01-12 v2.11
 Copyright (C)
    2006-2011 Heiko Oberdiek
-   2016-2020 Oberdiek Package Support Group
+   2016-2023 Oberdiek Package Support Group
 This work may be distributed and/or modified under the
 conditions of the LaTeX Project Public License, either
 version 1.3c of this license or (at your option) any later
@@ -169,7 +169,7 @@ and the derived files
 %<*driver>
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesFile{embedfile.drv}%
-  [2020-04-14 v2.10 Embed files into PDF (HO)]%
+  [2023-01-12 v2.11 Embed files into PDF (HO)]%
 \documentclass{ltxdoc}
 \usepackage{holtxdoc}[2011/11/22]
 \begin{document}
@@ -183,7 +183,7 @@ and the derived files
 % \GetFileInfo{embedfile.drv}
 %
 % \title{The \xpackage{embedfile} package}
-% \date{2020-04-14 v2.10}
+% \date{2023-01-12 v2.11}
 % \author{Heiko Oberdiek\thanks
 % {Please report any issues at \url{https://github.com/ho-tex/embedfile/issues}}}
 %
@@ -279,8 +279,11 @@ and the derived files
 %      are different.
 %    \item[\xoption{ucfilespec}]
 %      Since PDF 1.7 the file name may be provided in Unicode.
+%      It must be provided for PDF/A-3. 
+%      By default the \xoption{filespec} is used.
 %      The conversion of the option value into a PDF string
 %      is controlled by option \xoption{stringmethod}.
+%      Non-ascii chars can look funny if hyperref is not loaded!
 %    \item[\xoption{filesystem}]
 %      This sets the entry \verb|/FS| in
 %      the file specification dictionary, see PDF specification
@@ -293,8 +296,10 @@ and the derived files
 %    \item[\xoption{desc}]
 %      The description for the file.
 %    \item[\xoption{afrelationship}]
-%      This adds the /AFRelationship key to the filespec dicrectory. The value is
-%      a pdf name with or without the leading slash.%
+%      This adds the /AFRelationship key to the filespec dictionary. The value is
+%      a pdf name with or without the leading slash.
+%      Typical values are \verb|Source|, \verb|Data|, \verb|Alternative|, 
+%      \verb|Schema| or  \verb|Unspecified|. Mandatory for PDF/A-3.      
 %    \item[\xoption{stringmethod}]
 %      The package must convert the values of the keys \xoption{ucfilespec}
 %      and \xoption{desc} into a PDF string (before version 2.4: \xoption{filespec}
@@ -603,7 +608,7 @@ You need Acrobat Reader 8 or higher.
 %<*dtxattach>
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{dtx-attach}
-  [2020-04-14 v2.10 Embed \string\jobname.dtx (HO)]%
+  [2023-01-12 v2.11 Embed \string\jobname.dtx (HO)]%
 \RequirePackage{embedfile}[2019/12/03]
 \embedfile[%
   stringmethod=escape,%
@@ -694,7 +699,7 @@ You need Acrobat Reader 8 or higher.
   \fi
 \expandafter\x\csname ver@embedfile.sty\endcsname
 \ProvidesPackage{embedfile}%
-  [2020-04-14 v2.10 Embed files into PDF (HO)]%
+  [2023-01-12 v2.11 Embed files into PDF (HO)]%
 %    \end{macrocode}
 %
 % \subsection{Catcodes}
@@ -765,9 +770,12 @@ You need Acrobat Reader 8 or higher.
 %    \begin{macro}{\EmFi@Error}
 %    \begin{macrocode}
 \EmFi@RequirePackage{infwarerr}[2007/09/09]%
-\def\EmFi@Error{%
-  \@PackageError{embedfile}%
-}
+\ifcsname EmFi@Error\endcsname
+\else
+  \def\EmFi@Error{%
+    \@PackageError{embedfile}%
+  }
+\fi
 %    \end{macrocode}
 %    \end{macro}
 %
@@ -790,7 +798,7 @@ You need Acrobat Reader 8 or higher.
 \ifpdf
 \else
   \EmFi@Error{%
-    Missing pdfTeX in PDF mode%
+    Missing pdfTeX or luaTeX in PDF mode%
   }{%
     Currently other drivers are not supported. %
     Package loading is aborted.%
@@ -1170,7 +1178,7 @@ You need Acrobat Reader 8 or higher.
             \else\ifx\EmFi@type\EmFi@S@creationdate CreationDate%
             \else\ifx\EmFi@type\EmFi@S@size Size%
             \else S%
-            \fi\fi\fi\fi\fi\fi\fi
+            \fi\fi\fi\fi\fi\fi\fi\fi
             /N(\EmFi@title)%
             \EmFi@@order{\EmFi@order}%
             \ifEmFi@visible
@@ -1384,7 +1392,7 @@ You need Acrobat Reader 8 or higher.
           \pdf@escapestring{\EmFi@filespec}%
         }%
         \ifx\EmFi@ucfilespec\ltx@empty
-          \let\EmFi@@ucfilespec\ltx@empty
+          \EmFi@convert\EmFi@filespec\EmFi@@ucfilespec
         \else
           \EmFi@convert\EmFi@ucfilespec\EmFi@@ucfilespec
         \fi
@@ -1429,10 +1437,7 @@ You need Acrobat Reader 8 or higher.
             /FS/\pdf@escapename{\EmFi@filesystem}%
             \fi
             /F(\EmFi@@filespec)%
-            \ifx\EmFi@@ucfilespec\ltx@empty
-            \else
-              /UF(\EmFi@@ucfilespec)%
-            \fi
+            /UF(\EmFi@@ucfilespec)%
             \ifx\EmFi@@desc\ltx@empty
             \else
               /Desc(\EmFi@@desc)%
@@ -1946,6 +1951,11 @@ You need Acrobat Reader 8 or higher.
 %   \item Fix issue \#4, the value of afrelationship should not be
 %   converted but name escaped.
 %   \end{Version}
+%   \begin{Version}{2023-01-12 v2.11}
+%   \item Allow the error message to be changed for better tex4ht compability (PR\#7)
+%   \item Adapted the error message to luatex 
+%   \item The /UF key in the filespec dictionary is now set by default (PR\#6)
+%   \end{Version}
 % \end{History}
 %
 % \PrintIndex
@@ -1955,7 +1965,7 @@ You need Acrobat Reader 8 or higher.
 endstream
 endobj
 2 0 obj
-<</Type/Filespec/F(embedfile.dtx)/Desc(LaTeX\040docstrip\040source\040archive\040for\040package\040`embedfile')/EF<</F 1 0 R>>>>
+<</Type/Filespec/F(embedfile.dtx)/UF(embedfile.dtx)/Desc(LaTeX\040docstrip\040source\040archive\040for\040package\040`embedfile')/EF<</F 1 0 R>>>>
 endobj
 3 0 obj
 <</Names[(embedfile.dtx)2 0 R]>>
@@ -1967,17 +1977,17 @@ endobj
 << /Length 526 >>        
 stream
 BT
-/F25 9.96264 Tf
+/F15 9.96264 Tf
 1 0 0 1 91.925 759.927 Tm [<0068>83<003200620069>-333<00550047>]TJ
-/F36 6.97385 Tf
+/F26 6.97385 Tf
 1 0 0 1 120.349 761.699 Tm [<001B>]TJ
-/F25 9.96264 Tf
+/F15 9.96264 Tf
 1 0 0 1 124.733 759.927 Tm [<0068>]TJ
 1 0 0 1 130.266 757.78 Tm [<0031>]TJ
 1 0 0 1 135.805 759.927 Tm [<00730056002C>]TJ
-/F37 9.96264 Tf
+/F27 9.96264 Tf
 1 0 0 1 154.345 759.927 Tm [<0032004B00230032002F00370042004800320058002F00690074>]TJ
-/F25 9.96264 Tf
+/F15 9.96264 Tf
 1 0 0 1 225.658 759.927 Tm [<0062003F0051006D0048002F>-333<0023>-28<0032>-333<0032004B>28<0023>-28<0032002F002F0032002F0058>]TJ
 ET
 endstream
@@ -1986,7 +1996,7 @@ endobj
 << /Type /Page /Contents 7 0 R /Resources 5 0 R /MediaBox [ 0 0 595.276 841.89 ] /Parent 11 0 R >>
 endobj
 5 0 obj
-<< /Font << /F25 8 0 R /F36 9 0 R /F37 10 0 R >> /ProcSet [ /PDF /Text ] >>
+<< /Font << /F15 8 0 R /F26 9 0 R /F27 10 0 R >> /ProcSet [ /PDF /Text ] >>
 endobj
 12 0 obj
 [ 35 [ 525 ] 47 [ 525 ] 50 [ 525 ] 55 [ 525 ] 66 [ 525 ] 72 [ 525 ] 75 [ 525 ] 88 [ 525 ] 105 [ 525 ] 116 [ 525 ] ]
@@ -2198,39 +2208,39 @@ xref
 0 33
 0000000000 65535 f 
 0000000020 00000 n 
-0000060292 00000 n 
-0000060436 00000 n 
-0000060484 00000 n 
-0000061207 00000 n 
-0000061093 00000 n 
-0000060508 00000 n 
-0000070822 00000 n 
-0000066394 00000 n 
-0000064259 00000 n 
-0000071175 00000 n 
-0000061298 00000 n 
-0000063150 00000 n 
-0000061430 00000 n 
-0000061505 00000 n 
-0000063385 00000 n 
-0000064412 00000 n 
-0000064611 00000 n 
-0000065411 00000 n 
-0000064642 00000 n 
-0000064706 00000 n 
-0000065647 00000 n 
-0000066546 00000 n 
-0000066745 00000 n 
-0000069595 00000 n 
-0000066938 00000 n 
-0000067013 00000 n 
-0000069831 00000 n 
-0000070975 00000 n 
-0000071236 00000 n 
-0000071279 00000 n 
-0000071354 00000 n 
+0000060867 00000 n 
+0000061029 00000 n 
+0000061077 00000 n 
+0000061800 00000 n 
+0000061686 00000 n 
+0000061101 00000 n 
+0000071415 00000 n 
+0000066987 00000 n 
+0000064852 00000 n 
+0000071768 00000 n 
+0000061891 00000 n 
+0000063743 00000 n 
+0000062023 00000 n 
+0000062098 00000 n 
+0000063978 00000 n 
+0000065005 00000 n 
+0000065204 00000 n 
+0000066004 00000 n 
+0000065235 00000 n 
+0000065299 00000 n 
+0000066240 00000 n 
+0000067139 00000 n 
+0000067338 00000 n 
+0000070188 00000 n 
+0000067531 00000 n 
+0000067606 00000 n 
+0000070424 00000 n 
+0000071568 00000 n 
+0000071829 00000 n 
+0000071872 00000 n 
+0000071947 00000 n 
 trailer
 << /Size 33 /Root 31 0 R /Info 32 0 R >>
 startxref
-71426
+72019
 %%EOF
