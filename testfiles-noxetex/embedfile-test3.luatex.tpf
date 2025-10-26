@@ -1,7 +1,7 @@
-%PDF-1.5
+%PDF-1.7
 %Ã’¡‘≈ÿ–ƒ∆
 1 0 obj
-<< /Type/EmbeddedFile/Subtype/plain#2Ftext/Params<</ModDate()/Size 60754/CheckSum<5F57DF3C8E2D0134235FCFE584D48A5F>>> /Length 60754 >>      
+<< /Type/EmbeddedFile/Subtype/plain#2Ftext/Params<</ModDate()/Size 59631/CheckSum<DCE755F4B62615461094DDB46980AB45>>> /Length 59631 >>      
 stream
 % \iffalse meta-comment
 %
@@ -64,7 +64,7 @@ stream
 %    use A4 as paper format:
 %       \PassOptionsToClass{a4paper}{article}
 %
-%    Programm calls to get the documentation (example):
+%    Program calls to get the documentation (example):
 %       pdflatex embedfile.dtx
 %       makeindex -s gind.ist embedfile.idx
 %       pdflatex embedfile.dtx
@@ -210,7 +210,7 @@ and the derived files
 % \subsubsection{Future development}
 %
 %    My dream is a large package that merges the features of
-%    all these packages meantioned before:
+%    all these packages mentioned before:
 %    \begin{itemize}
 %    \item Files can be attached to a page.
 %    \item Files can be attached to the document.
@@ -351,7 +351,7 @@ and the derived files
 %       \dots & \dots & \dots & \dots\\
 %    \end{tabular}
 %    \end{quote}
-%    Acrobat Reader 10 shows the embeded files in the left panel
+%    Acrobat Reader 10 shows the embedded files in the left panel
 %    and adds a new column for the compressed size.
 %
 %    If the files form a collection, then they are displayed
@@ -1543,6 +1543,17 @@ You need Acrobat Reader 8 or higher.
 %    \end{macro}
 %    \begin{macro}{\embedfilefinish}
 %    \begin{macrocode}
+\ifcsname ProvidesPackage\endcsname
+\ExplSyntaxOn
+\IfPDFManagementActiveTF
+ {
+   \cs_set_eq:NN\emFi@pdfmanagementadd\pdfmanagement_add:nne
+   \cs_set_eq:NN\emFi@pdfobjectreflast\pdf_object_ref_last:
+ }{}
+\ExplSyntaxOff
+\else
+ \def\IfPDFManagementActiveTF#1#2{#2}
+\fi 
 \def\embedfilefinish{%
   \ifEmFi@finished
     \EmFi@Error{%
@@ -1558,28 +1569,44 @@ You need Acrobat Reader 8 or higher.
 %    \begin{macrocode}
       \global\EmFi@finishedtrue
       \begingroup
-        \def\do##1##2{%
-          (##1)##2%
-        }%
-        \immediate\pdfobj{%
-          <<%
-            /Names[\EmFi@list]%
-          >>%
-        }%
-        \pdfnames{%
+      \IfPDFManagementActiveTF
+         {%
+          \def\do##1##2{%
+           \emFi@pdfmanagementadd{Catalog/Names}
+             {EmbeddedFiles}{##2}}%
+          \EmFi@list   
+         }
+         {%
+          \def\do##1##2{%
+           (##1)##2%
+           }%
+          \immediate\pdfobj{%
+           <<%
+             /Names[\EmFi@list]%
+           >>%
+          }%
+           \pdfnames{%
           /EmbeddedFiles \the\pdflastobj\ltx@space 0 R%
-        }%
+         }}%
       \endgroup
       \begingroup
-        \def\do##1##2{%
-          \ltx@space##2%
-        }%
-        \immediate\pdfobj{%
-          [\EmFi@list]%
-        }%
-        \pdfcatalog{%
-          /AF \the\pdflastobj\ltx@space 0 R%
-        }%
+        \IfPDFManagementActiveTF
+         {%
+          \def\do##1##2{%
+           \emFi@pdfmanagementadd{Catalog}{AF}{##2}}%
+          \EmFi@list   
+         }
+         {%
+           \def\do##1##2{%
+            \ltx@space##2%
+            }%
+           \immediate\pdfobj{%
+            [\EmFi@list]%
+           }%
+           \pdfcatalog{%
+            /AF \the\pdflastobj\ltx@space 0 R%
+          }%
+         } 
       \endgroup
 %    \end{macrocode}
 %    Write collection objects.
@@ -1658,9 +1685,15 @@ You need Acrobat Reader 8 or higher.
               /Sort<<\EmFi@temp>>%
             \fi
           >>%
-        }%
-        \pdfcatalog{%
-          /Collection \the\pdflastobj\ltx@space0 R%
+        }
+        \IfPDFManagementActiveTF
+         {%
+           \emFi@pdfmanagementadd{Catalog}{Collection}{\emFi@pdfobjectreflast}%
+         }%
+         {%
+           \pdfcatalog{%
+            /Collection \the\pdflastobj\ltx@space0 R%
+         }%   
         }%
       \fi
     \fi
@@ -1955,7 +1988,7 @@ You need Acrobat Reader 8 or higher.
 %   \item Updated
 %   \end{Version}%   
 %   \begin{Version}{2023-01-12 v2.12}
-%   \item Allow the error message to be changed for better tex4ht compability (PR\#7)
+%   \item Allow the error message to be changed for better tex4ht compatibility (PR\#7)
 %   \item Adapted the error message to luatex 
 %   \item The /UF key in the filespec dictionary is now set by default (PR\#6)
 %   \end{Version}
@@ -2016,7 +2049,7 @@ endobj
 << /Type /FontDescriptor /FontName /VXSVPV+LMMono10-Regular /Flags 4 /FontBBox [ -451 -316 731 1016 ] /Ascent 1016 /CapHeight 611 /Descent -316 /ItalicAngle 0 /StemV 175 /XHeight 431 /FontFile3 15 0 R /CIDSet 14 0 R >>
 endobj
 16 0 obj
-<< /Length 814 >>        
+<< /Length 788 >>        
 stream
 %!PS-Adobe-3.0 Resource-CMap
 %%DocumentNeededResources: ProcSet (CIDInit)
@@ -2038,8 +2071,6 @@ begincmap
 1 begincodespacerange
 <0000> <FFFF>
 endcodespacerange
-0 beginbfrange
-endbfrange
 10 beginbfchar
 <0023> <0062>
 <002F> <0064>
@@ -2081,7 +2112,7 @@ endobj
 << /Type /FontDescriptor /FontName /BYLSJL+LMRoman7-Regular /Flags 4 /FontBBox [ -483 -292 1562 1124 ] /Ascent 1124 /CapHeight 683 /Descent -292 /ItalicAngle 0 /StemV 108 /XHeight 431 /FontFile3 21 0 R /CIDSet 20 0 R >>
 endobj
 22 0 obj
-<< /Length 687 >>        
+<< /Length 661 >>        
 stream
 %!PS-Adobe-3.0 Resource-CMap
 %%DocumentNeededResources: ProcSet (CIDInit)
@@ -2103,8 +2134,6 @@ begincmap
 1 begincodespacerange
 <0000> <FFFF>
 endcodespacerange
-0 beginbfrange
-endbfrange
 1 beginbfchar
 <001B> <0041>
 endbfchar
@@ -2137,7 +2166,7 @@ endobj
 << /Type /FontDescriptor /FontName /XKAESO+LMRoman10-Regular /Flags 4 /FontBBox [ -430 -290 1417 1127 ] /Ascent 1127 /CapHeight 683 /Descent -290 /ItalicAngle 0 /StemV 93 /XHeight 431 /FontFile3 27 0 R /CIDSet 26 0 R >>
 endobj
 28 0 obj
-<< /Length 931 >>        
+<< /Length 905 >>        
 stream
 %!PS-Adobe-3.0 Resource-CMap
 %%DocumentNeededResources: ProcSet (CIDInit)
@@ -2159,8 +2188,6 @@ begincmap
 1 begincodespacerange
 <0000> <FFFF>
 endcodespacerange
-0 beginbfrange
-endbfrange
 18 beginbfchar
 <0023> <0062>
 <002C> <003A>
@@ -2211,39 +2238,39 @@ xref
 0 33
 0000000000 65535 f 
 0000000020 00000 n 
-0000060948 00000 n 
-0000061110 00000 n 
-0000061158 00000 n 
-0000061881 00000 n 
-0000061767 00000 n 
-0000061182 00000 n 
-0000071496 00000 n 
-0000067068 00000 n 
-0000064933 00000 n 
-0000071849 00000 n 
-0000061972 00000 n 
-0000063824 00000 n 
-0000062104 00000 n 
-0000062179 00000 n 
-0000064059 00000 n 
-0000065086 00000 n 
-0000065285 00000 n 
-0000066085 00000 n 
-0000065316 00000 n 
-0000065380 00000 n 
-0000066321 00000 n 
-0000067220 00000 n 
-0000067419 00000 n 
-0000070269 00000 n 
-0000067612 00000 n 
-0000067687 00000 n 
-0000070505 00000 n 
-0000071649 00000 n 
-0000071910 00000 n 
-0000071953 00000 n 
-0000072028 00000 n 
+0000059825 00000 n 
+0000059987 00000 n 
+0000060035 00000 n 
+0000060758 00000 n 
+0000060644 00000 n 
+0000060059 00000 n 
+0000070295 00000 n 
+0000065893 00000 n 
+0000063784 00000 n 
+0000070648 00000 n 
+0000060849 00000 n 
+0000062701 00000 n 
+0000060981 00000 n 
+0000061056 00000 n 
+0000062936 00000 n 
+0000063937 00000 n 
+0000064136 00000 n 
+0000064936 00000 n 
+0000064167 00000 n 
+0000064231 00000 n 
+0000065172 00000 n 
+0000066045 00000 n 
+0000066244 00000 n 
+0000069094 00000 n 
+0000066437 00000 n 
+0000066512 00000 n 
+0000069330 00000 n 
+0000070448 00000 n 
+0000070709 00000 n 
+0000070752 00000 n 
+0000070827 00000 n 
 trailer
 << /Size 33 /Root 31 0 R /Info 32 0 R >>
 startxref
-72100
+70899
 %%EOF

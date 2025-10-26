@@ -1,9 +1,9 @@
-%PDF-1.5
+%PDF-1.7
 %ÐÔÅØ
 1 0 obj
 <<
-/Type/EmbeddedFile/Subtype/plain#2Ftext/Params<</ModDate()/Size 60754/CheckSum<5F57DF3C8E2D0134235FCFE584D48A5F>>>
-/Length 60754     
+/Type/EmbeddedFile/Subtype/plain#2Ftext/Params<</ModDate()/Size 59631/CheckSum<DCE755F4B62615461094DDB46980AB45>>>
+/Length 59631     
 >>
 stream
 % \iffalse meta-comment
@@ -67,7 +67,7 @@ stream
 %    use A4 as paper format:
 %       \PassOptionsToClass{a4paper}{article}
 %
-%    Programm calls to get the documentation (example):
+%    Program calls to get the documentation (example):
 %       pdflatex embedfile.dtx
 %       makeindex -s gind.ist embedfile.idx
 %       pdflatex embedfile.dtx
@@ -213,7 +213,7 @@ and the derived files
 % \subsubsection{Future development}
 %
 %    My dream is a large package that merges the features of
-%    all these packages meantioned before:
+%    all these packages mentioned before:
 %    \begin{itemize}
 %    \item Files can be attached to a page.
 %    \item Files can be attached to the document.
@@ -354,7 +354,7 @@ and the derived files
 %       \dots & \dots & \dots & \dots\\
 %    \end{tabular}
 %    \end{quote}
-%    Acrobat Reader 10 shows the embeded files in the left panel
+%    Acrobat Reader 10 shows the embedded files in the left panel
 %    and adds a new column for the compressed size.
 %
 %    If the files form a collection, then they are displayed
@@ -1546,6 +1546,17 @@ You need Acrobat Reader 8 or higher.
 %    \end{macro}
 %    \begin{macro}{\embedfilefinish}
 %    \begin{macrocode}
+\ifcsname ProvidesPackage\endcsname
+\ExplSyntaxOn
+\IfPDFManagementActiveTF
+ {
+   \cs_set_eq:NN\emFi@pdfmanagementadd\pdfmanagement_add:nne
+   \cs_set_eq:NN\emFi@pdfobjectreflast\pdf_object_ref_last:
+ }{}
+\ExplSyntaxOff
+\else
+ \def\IfPDFManagementActiveTF#1#2{#2}
+\fi 
 \def\embedfilefinish{%
   \ifEmFi@finished
     \EmFi@Error{%
@@ -1561,28 +1572,44 @@ You need Acrobat Reader 8 or higher.
 %    \begin{macrocode}
       \global\EmFi@finishedtrue
       \begingroup
-        \def\do##1##2{%
-          (##1)##2%
-        }%
-        \immediate\pdfobj{%
-          <<%
-            /Names[\EmFi@list]%
-          >>%
-        }%
-        \pdfnames{%
+      \IfPDFManagementActiveTF
+         {%
+          \def\do##1##2{%
+           \emFi@pdfmanagementadd{Catalog/Names}
+             {EmbeddedFiles}{##2}}%
+          \EmFi@list   
+         }
+         {%
+          \def\do##1##2{%
+           (##1)##2%
+           }%
+          \immediate\pdfobj{%
+           <<%
+             /Names[\EmFi@list]%
+           >>%
+          }%
+           \pdfnames{%
           /EmbeddedFiles \the\pdflastobj\ltx@space 0 R%
-        }%
+         }}%
       \endgroup
       \begingroup
-        \def\do##1##2{%
-          \ltx@space##2%
-        }%
-        \immediate\pdfobj{%
-          [\EmFi@list]%
-        }%
-        \pdfcatalog{%
-          /AF \the\pdflastobj\ltx@space 0 R%
-        }%
+        \IfPDFManagementActiveTF
+         {%
+          \def\do##1##2{%
+           \emFi@pdfmanagementadd{Catalog}{AF}{##2}}%
+          \EmFi@list   
+         }
+         {%
+           \def\do##1##2{%
+            \ltx@space##2%
+            }%
+           \immediate\pdfobj{%
+            [\EmFi@list]%
+           }%
+           \pdfcatalog{%
+            /AF \the\pdflastobj\ltx@space 0 R%
+          }%
+         } 
       \endgroup
 %    \end{macrocode}
 %    Write collection objects.
@@ -1661,9 +1688,15 @@ You need Acrobat Reader 8 or higher.
               /Sort<<\EmFi@temp>>%
             \fi
           >>%
-        }%
-        \pdfcatalog{%
-          /Collection \the\pdflastobj\ltx@space0 R%
+        }
+        \IfPDFManagementActiveTF
+         {%
+           \emFi@pdfmanagementadd{Catalog}{Collection}{\emFi@pdfobjectreflast}%
+         }%
+         {%
+           \pdfcatalog{%
+            /Collection \the\pdflastobj\ltx@space0 R%
+         }%   
         }%
       \fi
     \fi
@@ -1958,7 +1991,7 @@ You need Acrobat Reader 8 or higher.
 %   \item Updated
 %   \end{Version}%   
 %   \begin{Version}{2023-01-12 v2.12}
-%   \item Allow the error message to be changed for better tex4ht compability (PR\#7)
+%   \item Allow the error message to be changed for better tex4ht compatibility (PR\#7)
 %   \item Adapted the error message to luatex 
 %   \item The /UF key in the filespec dictionary is now set by default (PR\#6)
 %   \end{Version}
@@ -1981,11 +2014,11 @@ endobj
 endobj
 7 0 obj
 <<
-/Length 315       
+/Length 299       
 >>
 stream
 BT
-/F24 9.9626 Tf 91.925 759.927 Td [(T)83(est)-333(\050L)]TJ/F23 6.9738 Tf 28.433 2.042 Td [(A)]TJ/F24 9.9626 Tf 4.386 -2.042 Td [(T)]TJ 5.534 -2.145 Td [(E)]TJ 5.535 2.145 Td [(X\051:)]TJ/F33 9.9626 Tf 18.542 0 Td [(embedfile.dtx)]TJ/F24 9.9626 Tf 71.315 0 Td [(should)-333(b)-28(e)-333(em)27(b)-27(edded.)]TJ
+/F32 9.9626 Tf 91.925 759.927 Td [(T)83(est)-333(\050L)]TJ/F31 6.9738 Tf 28.433 2.042 Td [(A)]TJ/F32 9.9626 Tf 4.386 -2.042 Td [(T)]TJ 5.534 -2.145 Td [(E)]TJ 5.535 2.145 Td [(X\051:)]TJ/F41 9.9626 Tf [-444(embedfile.dtx)]TJ/F32 9.9626 Tf [-334(should)-333(b)-28(e)-333(em)28(b)-28(edded.)]TJ
 ET
 endstream
 endobj
@@ -2000,7 +2033,7 @@ endobj
 endobj
 5 0 obj
 <<
-/Font << /F24 8 0 R /F23 9 0 R /F33 10 0 R >>
+/Font << /F32 8 0 R /F31 9 0 R /F41 10 0 R >>
 /ProcSet [ /PDF /Text ]
 >>
 endobj
@@ -2511,36 +2544,36 @@ xref
 0 27
 0000000000 65535 f 
 0000000015 00000 n 
-0000060942 00000 n 
-0000061104 00000 n 
-0000061152 00000 n 
-0000061661 00000 n 
-0000061549 00000 n 
-0000061176 00000 n 
-0000095440 00000 n 
-0000097375 00000 n 
-0000099132 00000 n 
-0000099291 00000 n 
-0000061752 00000 n 
-0000062070 00000 n 
-0000062094 00000 n 
-0000062531 00000 n 
-0000075127 00000 n 
-0000075404 00000 n 
-0000082886 00000 n 
-0000083102 00000 n 
-0000093418 00000 n 
-0000093657 00000 n 
-0000095597 00000 n 
-0000097530 00000 n 
-0000099349 00000 n 
-0000099392 00000 n 
-0000099467 00000 n 
+0000059819 00000 n 
+0000059981 00000 n 
+0000060029 00000 n 
+0000060522 00000 n 
+0000060410 00000 n 
+0000060053 00000 n 
+0000094301 00000 n 
+0000096236 00000 n 
+0000097993 00000 n 
+0000098152 00000 n 
+0000060613 00000 n 
+0000060931 00000 n 
+0000060955 00000 n 
+0000061392 00000 n 
+0000073988 00000 n 
+0000074265 00000 n 
+0000081747 00000 n 
+0000081963 00000 n 
+0000092279 00000 n 
+0000092518 00000 n 
+0000094458 00000 n 
+0000096391 00000 n 
+0000098210 00000 n 
+0000098253 00000 n 
+0000098328 00000 n 
 trailer
 << /Size 27
 /Root 25 0 R
 /Info 26 0 R
  >>
 startxref
-99539
+98400
 %%EOF

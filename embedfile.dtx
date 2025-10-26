@@ -1,12 +1,12 @@
 % \iffalse meta-comment
 %
 % File: embedfile.dtx
-% Version: 2023-01-12 v2.12
+% Version: 2025-10-27 v2.13
 % Info: Embed files into PDF
 %
 % Copyright (C)
 %    2006-2011 Heiko Oberdiek
-%    2016-2023 Oberdiek Package Support Group
+%    2016-2025 Oberdiek Package Support Group
 %    https://github.com/ho-tex/embedfile/issues
 %
 % This work may be distributed and/or modified under the
@@ -89,7 +89,7 @@
 \input docstrip.tex
 \Msg{************************************************************************}
 \Msg{* Installation}
-\Msg{* Package: embedfile 2023-01-12 v2.12 Embed files into PDF (HO)}
+\Msg{* Package: embedfile 2025-10-27 v2.13 Embed files into PDF (HO)}
 \Msg{************************************************************************}
 
 \keepsilent
@@ -101,11 +101,11 @@
 This is a generated file.
 
 Project: embedfile
-Version: 2023-01-12 v2.12
+Version: 2025-10-27 v2.13
 
 Copyright (C)
    2006-2011 Heiko Oberdiek
-   2016-2023 Oberdiek Package Support Group
+   2016-2025 Oberdiek Package Support Group
 
 This work may be distributed and/or modified under the
 conditions of the LaTeX Project Public License, either
@@ -179,7 +179,7 @@ and the derived files
 %<*driver>
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesFile{embedfile.drv}%
-  [2023-01-12 v2.12 Embed files into PDF (HO)]%
+  [2025-10-27 v2.13 Embed files into PDF (HO)]%
 \documentclass{ltxdoc}
 \usepackage{holtxdoc}[2011/11/22]
 \begin{document}
@@ -193,7 +193,7 @@ and the derived files
 % \GetFileInfo{embedfile.drv}
 %
 % \title{The \xpackage{embedfile} package}
-% \date{2023-01-12 v2.12}
+% \date{2025-10-27 v2.13}
 % \author{Heiko Oberdiek\thanks
 % {Please report any issues at \url{https://github.com/ho-tex/embedfile/issues}}}
 %
@@ -628,7 +628,7 @@ You need Acrobat Reader 8 or higher.
 %<*dtxattach>
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{dtx-attach}
-  [2023-01-12 v2.12 Embed \string\jobname.dtx (HO)]%
+  [2025-10-27 v2.13 Embed \string\jobname.dtx (HO)]%
 \RequirePackage{embedfile}[2019/12/03]
 \embedfile[%
   stringmethod=escape,%
@@ -719,7 +719,7 @@ You need Acrobat Reader 8 or higher.
   \fi
 \expandafter\x\csname ver@embedfile.sty\endcsname
 \ProvidesPackage{embedfile}%
-  [2023-01-12 v2.12 Embed files into PDF (HO)]%
+  [2025-10-27 v2.13 Embed files into PDF (HO)]%
 %    \end{macrocode}
 %
 % \subsection{Catcodes}
@@ -1563,6 +1563,17 @@ You need Acrobat Reader 8 or higher.
 %    \end{macro}
 %    \begin{macro}{\embedfilefinish}
 %    \begin{macrocode}
+\ifcsname ProvidesPackage\endcsname
+\ExplSyntaxOn
+\IfPDFManagementActiveTF
+ {
+   \cs_set_eq:NN\emFi@pdfmanagementadd\pdfmanagement_add:nne
+   \cs_set_eq:NN\emFi@pdfobjectreflast\pdf_object_ref_last:
+ }{}
+\ExplSyntaxOff
+\else
+ \def\IfPDFManagementActiveTF#1#2{#2}
+\fi 
 \def\embedfilefinish{%
   \ifEmFi@finished
     \EmFi@Error{%
@@ -1578,28 +1589,44 @@ You need Acrobat Reader 8 or higher.
 %    \begin{macrocode}
       \global\EmFi@finishedtrue
       \begingroup
-        \def\do##1##2{%
-          (##1)##2%
-        }%
-        \immediate\pdfobj{%
-          <<%
-            /Names[\EmFi@list]%
-          >>%
-        }%
-        \pdfnames{%
+      \IfPDFManagementActiveTF
+         {%
+          \def\do##1##2{%
+           \emFi@pdfmanagementadd{Catalog/Names}
+             {EmbeddedFiles}{##2}}%
+          \EmFi@list   
+         }
+         {%
+          \def\do##1##2{%
+           (##1)##2%
+           }%
+          \immediate\pdfobj{%
+           <<%
+             /Names[\EmFi@list]%
+           >>%
+          }%
+           \pdfnames{%
           /EmbeddedFiles \the\pdflastobj\ltx@space 0 R%
-        }%
+         }}%
       \endgroup
       \begingroup
-        \def\do##1##2{%
-          \ltx@space##2%
-        }%
-        \immediate\pdfobj{%
-          [\EmFi@list]%
-        }%
-        \pdfcatalog{%
-          /AF \the\pdflastobj\ltx@space 0 R%
-        }%
+        \IfPDFManagementActiveTF
+         {%
+          \def\do##1##2{%
+           \emFi@pdfmanagementadd{Catalog}{AF}{##2}}%
+          \EmFi@list   
+         }
+         {%
+           \def\do##1##2{%
+            \ltx@space##2%
+            }%
+           \immediate\pdfobj{%
+            [\EmFi@list]%
+           }%
+           \pdfcatalog{%
+            /AF \the\pdflastobj\ltx@space 0 R%
+          }%
+         } 
       \endgroup
 %    \end{macrocode}
 %    Write collection objects.
@@ -1678,9 +1705,15 @@ You need Acrobat Reader 8 or higher.
               /Sort<<\EmFi@temp>>%
             \fi
           >>%
-        }%
-        \pdfcatalog{%
-          /Collection \the\pdflastobj\ltx@space0 R%
+        }
+        \IfPDFManagementActiveTF
+         {%
+           \emFi@pdfmanagementadd{Catalog}{Collection}{\emFi@pdfobjectreflast}%
+         }%
+         {%
+           \pdfcatalog{%
+            /Collection \the\pdflastobj\ltx@space0 R%
+         }%   
         }%
       \fi
     \fi
@@ -1978,6 +2011,9 @@ You need Acrobat Reader 8 or higher.
 %   \item Allow the error message to be changed for better tex4ht compatibility (PR\#7)
 %   \item Adapted the error message to luatex 
 %   \item The /UF key in the filespec dictionary is now set by default (PR\#6)
+%   \end{Version}
+%   \begin{Version}{2025-10-27 v2.13}
+%   \item Add support for PDF management
 %   \end{Version}
 % \end{History}
 %
