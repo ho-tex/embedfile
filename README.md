@@ -1,6 +1,6 @@
 # embedfile package for LaTeX
 
-## Version: 2023-01-12 v2.12
+## Version: 2025-10-27 v2.13
 
 This package embeds files in a PDF document, using the PDF format's embedding 
 operation (note the contrast with the attach operation used by the attachfile 
@@ -9,7 +9,7 @@ supported.
 
 ## Copyright (C)
 *    2006-2011 Heiko Oberdiek
-*    2016-2023 Oberdiek Package Support Group
+*    2016-2025 Oberdiek Package Support Group
 *    https://github.com/ho-tex/embedfile/issues
 
 ## License
