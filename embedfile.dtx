@@ -216,6 +216,11 @@ and the derived files
 %    list of embedded files. The packages \xpackage{attachfile}
 %    or \xpackage{attachfile2} follow the first approach, this
 %    package uses the latter method.
+%    
+%    Since version 2.13 the package is compatible with the LaTeX PDF management
+%    (loaded with \verb+\RequirePackage{pdfmanagement}+ or \verb+\DocumentMetadata+),
+%    but it doesn't make full use of its tools yet, the dictionary of the embedded files
+%    can \emph{not} be changed as described in the l3pdffile documentation. 
 %
 % \subsubsection{Future development}
 %
@@ -294,6 +299,8 @@ and the derived files
 %      The conversion of the option value into a PDF string
 %      is controlled by option \xoption{stringmethod}.
 %      Non-ascii chars can look funny if hyperref is not loaded!
+%      If \xoption{ucfilespec} is not set, \xoption{filespec} or the file name
+%      are used for the \texttt{/UF} key too.
 %    \item[\xoption{filesystem}]
 %      This sets the entry \verb|/FS| in
 %      the file specification dictionary, see PDF specification
@@ -1059,7 +1066,7 @@ You need Acrobat Reader 8 or higher.
 \def\EmFi@defobj#1{%
   \ifEmFi@id
     \expandafter\xdef\csname EmFi@#1@\EmFi@id\endcsname{%
-      \the\pdflastobj\ltx@space 0 R%
+      \emFi@pdfobjectreflast%
     }%
   \fi
 }
@@ -1429,14 +1436,11 @@ You need Acrobat Reader 8 or higher.
         \fi
         \ifEmFi@item
           \let\do\EmFi@do
-          \immediate\pdfobj{%
-            <<%
-              \EmFi@fieldlist
-            >>%
-          }%
-          \edef\EmFi@ci{\the\pdflastobj}%
+          \emFi@pdfwritedict{\EmFi@fieldlist}%
+          \edef\EmFi@ci{\emFi@pdfobjectreflast}%
         \fi
-        \immediate\pdfobj stream attr{%
+        \emFi@pdfwritefstream
+         {%
           /Type/EmbeddedFile%
           \ifx\EmFi@mimetype\ltx@empty
           \else
@@ -1447,10 +1451,9 @@ You need Acrobat Reader 8 or higher.
             /Size \pdf@filesize{\EmFi@file}%
             /CheckSum<\pdf@filemdfivesum{\EmFi@file}>%
           >>%
-        }file{\EmFi@file}\relax
+        }{\EmFi@file}\relax
         \EmFi@defobj{EmbeddedFile}%
-        \immediate\pdfobj{%
-          <<%
+        \emFi@pdfwritedict{%
             /Type/Filespec%
             \ifx\EmFi@filesystem\ltx@empty
             \else
@@ -1467,17 +1470,16 @@ You need Acrobat Reader 8 or higher.
               /AFRelationship/\pdf@escapename{\EmFi@@afrelationship}%
             \fi
             /EF<<%
-              /F \the\pdflastobj\ltx@space 0 R%
+              /F \emFi@pdfobjectreflast%
             >>%
             \ifEmFi@item
-              /CI \EmFi@ci\ltx@space 0 R%
+              /CI \EmFi@ci%
             \fi
-          >>%
         }%
         \EmFi@defobj{Filespec}%
         \EmFi@add{%
           \EmFi@@filespec
-        }{\the\pdflastobj\ltx@space 0 R}%
+        }{\emFi@pdfobjectreflast}%
       \fi
     \endgroup
   \fi
@@ -1565,14 +1567,23 @@ You need Acrobat Reader 8 or higher.
 %    \begin{macrocode}
 \ifcsname ProvidesPackage\endcsname
 \ExplSyntaxOn
+\sys_ensure_backend:
 \IfPDFManagementActiveTF
  {
-   \cs_set_eq:NN\emFi@pdfmanagementadd\pdfmanagement_add:nne
-   \cs_set_eq:NN\emFi@pdfobjectreflast\pdf_object_ref_last:
- }{}
+   \cs_new_eq:NN\emFi@pdfmanagementadd\pdfmanagement_add:nne
+ }
+ {} 
+\cs_new_eq:NN\emFi@pdfobjectreflast\pdf_object_ref_last:
+\cs_new:Npn\emFi@pdfwritedict#1{\pdf_object_unnamed_write:ne{dict}{#1}}
+\cs_new:Npn\emFi@pdfwritearray#1{\pdf_object_unnamed_write:ne{array}{#1}}
+\cs_new:Npn\emFi@pdfwritefstream#1#2{\pdf_object_unnamed_write:ne{fstream}{{#1}{#2}}}
 \ExplSyntaxOff
 \else
  \def\IfPDFManagementActiveTF#1#2{#2}
+ \def\emFi@pdfobjectreflast{\the\pdflastobj\ltx@space 0 R}
+ \def\emFi@pdfwritedict#1{\immediate\pdfobj{<<#1>>}}
+ \def\emFi@pdfwritearray#1{\immediate\pdfobj{[#1]}}
+ \def\emFi@pdfwritefstream#1#2{\immediate\pdfobj stream attr{#1}file{#2}}
 \fi 
 \def\embedfilefinish{%
   \ifEmFi@finished
@@ -1600,13 +1611,9 @@ You need Acrobat Reader 8 or higher.
           \def\do##1##2{%
            (##1)##2%
            }%
-          \immediate\pdfobj{%
-           <<%
-             /Names[\EmFi@list]%
-           >>%
-          }%
+          \emFi@pdfwritedict{/Names[\EmFi@list]}
            \pdfnames{%
-          /EmbeddedFiles \the\pdflastobj\ltx@space 0 R%
+          /EmbeddedFiles \emFi@pdfobjectreflast%
          }}%
       \endgroup
       \begingroup
@@ -1620,11 +1627,9 @@ You need Acrobat Reader 8 or higher.
            \def\do##1##2{%
             \ltx@space##2%
             }%
-           \immediate\pdfobj{%
-            [\EmFi@list]%
-           }%
+           \emFi@pdfwritearray{\EmFi@list}%
            \pdfcatalog{%
-            /AF \the\pdflastobj\ltx@space 0 R%
+            /AF \emFi@pdfobjectreflast%
           }%
          } 
       \endgroup
@@ -1684,8 +1689,7 @@ You need Acrobat Reader 8 or higher.
             /O ##1%
           \fi
         }%
-        \immediate\pdfobj{%
-          <<%
+        \emFi@pdfwritedict{%
             \ifx\EmFi@schema\ltx@empty
             \else
               /Schema<<\EmFi@schema>>%
@@ -1704,7 +1708,6 @@ You need Acrobat Reader 8 or higher.
             \else
               /Sort<<\EmFi@temp>>%
             \fi
-          >>%
         }
         \IfPDFManagementActiveTF
          {%
@@ -1712,7 +1715,7 @@ You need Acrobat Reader 8 or higher.
          }%
          {%
            \pdfcatalog{%
-            /Collection \the\pdflastobj\ltx@space0 R%
+            /Collection \emFi@pdfobjectreflast%
          }%   
         }%
       \fi

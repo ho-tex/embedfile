@@ -2,19 +2,19 @@
 %ÐÔÅØ
 5 0 obj
 <<
-/Type/EmbeddedFile/Subtype/plain#2Ftext/Params<</ModDate()/Size 59631/CheckSum<DCE755F4B62615461094DDB46980AB45>>>
-/Length 59631     
+/Type/EmbeddedFile/Subtype/plain#2Ftext/Params<</ModDate()/Size 60436/CheckSum<2DD8A57C35A46BA9FB1F0B40962280F5>>>
+/Length 60436     
 >>
 stream
 % \iffalse meta-comment
 %
 % File: embedfile.dtx
-% Version: 2023-01-12 v2.12
+% Version: 2025-10-27 v2.13
 % Info: Embed files into PDF
 %
 % Copyright (C)
 %    2006-2011 Heiko Oberdiek
-%    2016-2023 Oberdiek Package Support Group
+%    2016-2025 Oberdiek Package Support Group
 %    https://github.com/ho-tex/embedfile/issues
 %
 % This work may be distributed and/or modified under the
@@ -97,7 +97,7 @@ stream
 \input docstrip.tex
 \Msg{************************************************************************}
 \Msg{* Installation}
-\Msg{* Package: embedfile 2023-01-12 v2.12 Embed files into PDF (HO)}
+\Msg{* Package: embedfile 2025-10-27 v2.13 Embed files into PDF (HO)}
 \Msg{************************************************************************}
 \keepsilent
 \askforoverwritefalse
@@ -105,10 +105,10 @@ stream
 \preamble
 This is a generated file.
 Project: embedfile
-Version: 2023-01-12 v2.12
+Version: 2025-10-27 v2.13
 Copyright (C)
    2006-2011 Heiko Oberdiek
-   2016-2023 Oberdiek Package Support Group
+   2016-2025 Oberdiek Package Support Group
 This work may be distributed and/or modified under the
 conditions of the LaTeX Project Public License, either
 version 1.3c of this license or (at your option) any later
@@ -172,7 +172,7 @@ and the derived files
 %<*driver>
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesFile{embedfile.drv}%
-  [2023-01-12 v2.12 Embed files into PDF (HO)]%
+  [2025-10-27 v2.13 Embed files into PDF (HO)]%
 \documentclass{ltxdoc}
 \usepackage{holtxdoc}[2011/11/22]
 \begin{document}
@@ -186,7 +186,7 @@ and the derived files
 % \GetFileInfo{embedfile.drv}
 %
 % \title{The \xpackage{embedfile} package}
-% \date{2023-01-12 v2.12}
+% \date{2025-10-27 v2.13}
 % \author{Heiko Oberdiek\thanks
 % {Please report any issues at \url{https://github.com/ho-tex/embedfile/issues}}}
 %
@@ -209,6 +209,11 @@ and the derived files
 %    list of embedded files. The packages \xpackage{attachfile}
 %    or \xpackage{attachfile2} follow the first approach, this
 %    package uses the latter method.
+%    
+%    Since version 2.13 the package is compatible with the LaTeX PDF management
+%    (loaded with \verb+\RequirePackage{pdfmanagement}+ or \verb+\DocumentMetadata+),
+%    but it doesn't make full use of its tools yet, the dictionary of the embedded files
+%    can \emph{not} be changed as described in the l3pdffile documentation. 
 %
 % \subsubsection{Future development}
 %
@@ -287,6 +292,8 @@ and the derived files
 %      The conversion of the option value into a PDF string
 %      is controlled by option \xoption{stringmethod}.
 %      Non-ascii chars can look funny if hyperref is not loaded!
+%      If \xoption{ucfilespec} is not set, \xoption{filespec} or the file name
+%      are used for the \texttt{/UF} key too.
 %    \item[\xoption{filesystem}]
 %      This sets the entry \verb|/FS| in
 %      the file specification dictionary, see PDF specification
@@ -611,7 +618,7 @@ You need Acrobat Reader 8 or higher.
 %<*dtxattach>
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{dtx-attach}
-  [2023-01-12 v2.12 Embed \string\jobname.dtx (HO)]%
+  [2025-10-27 v2.13 Embed \string\jobname.dtx (HO)]%
 \RequirePackage{embedfile}[2019/12/03]
 \embedfile[%
   stringmethod=escape,%
@@ -702,7 +709,7 @@ You need Acrobat Reader 8 or higher.
   \fi
 \expandafter\x\csname ver@embedfile.sty\endcsname
 \ProvidesPackage{embedfile}%
-  [2023-01-12 v2.12 Embed files into PDF (HO)]%
+  [2025-10-27 v2.13 Embed files into PDF (HO)]%
 %    \end{macrocode}
 %
 % \subsection{Catcodes}
@@ -1042,7 +1049,7 @@ You need Acrobat Reader 8 or higher.
 \def\EmFi@defobj#1{%
   \ifEmFi@id
     \expandafter\xdef\csname EmFi@#1@\EmFi@id\endcsname{%
-      \the\pdflastobj\ltx@space 0 R%
+      \emFi@pdfobjectreflast%
     }%
   \fi
 }
@@ -1412,14 +1419,11 @@ You need Acrobat Reader 8 or higher.
         \fi
         \ifEmFi@item
           \let\do\EmFi@do
-          \immediate\pdfobj{%
-            <<%
-              \EmFi@fieldlist
-            >>%
-          }%
-          \edef\EmFi@ci{\the\pdflastobj}%
+          \emFi@pdfwritedict{\EmFi@fieldlist}%
+          \edef\EmFi@ci{\emFi@pdfobjectreflast}%
         \fi
-        \immediate\pdfobj stream attr{%
+        \emFi@pdfwritefstream
+         {%
           /Type/EmbeddedFile%
           \ifx\EmFi@mimetype\ltx@empty
           \else
@@ -1430,10 +1434,9 @@ You need Acrobat Reader 8 or higher.
             /Size \pdf@filesize{\EmFi@file}%
             /CheckSum<\pdf@filemdfivesum{\EmFi@file}>%
           >>%
-        }file{\EmFi@file}\relax
+        }{\EmFi@file}\relax
         \EmFi@defobj{EmbeddedFile}%
-        \immediate\pdfobj{%
-          <<%
+        \emFi@pdfwritedict{%
             /Type/Filespec%
             \ifx\EmFi@filesystem\ltx@empty
             \else
@@ -1450,17 +1453,16 @@ You need Acrobat Reader 8 or higher.
               /AFRelationship/\pdf@escapename{\EmFi@@afrelationship}%
             \fi
             /EF<<%
-              /F \the\pdflastobj\ltx@space 0 R%
+              /F \emFi@pdfobjectreflast%
             >>%
             \ifEmFi@item
-              /CI \EmFi@ci\ltx@space 0 R%
+              /CI \EmFi@ci%
             \fi
-          >>%
         }%
         \EmFi@defobj{Filespec}%
         \EmFi@add{%
           \EmFi@@filespec
-        }{\the\pdflastobj\ltx@space 0 R}%
+        }{\emFi@pdfobjectreflast}%
       \fi
     \endgroup
   \fi
@@ -1548,14 +1550,23 @@ You need Acrobat Reader 8 or higher.
 %    \begin{macrocode}
 \ifcsname ProvidesPackage\endcsname
 \ExplSyntaxOn
+\sys_ensure_backend:
 \IfPDFManagementActiveTF
  {
-   \cs_set_eq:NN\emFi@pdfmanagementadd\pdfmanagement_add:nne
-   \cs_set_eq:NN\emFi@pdfobjectreflast\pdf_object_ref_last:
- }{}
+   \cs_new_eq:NN\emFi@pdfmanagementadd\pdfmanagement_add:nne
+ }
+ {} 
+\cs_new_eq:NN\emFi@pdfobjectreflast\pdf_object_ref_last:
+\cs_new:Npn\emFi@pdfwritedict#1{\pdf_object_unnamed_write:ne{dict}{#1}}
+\cs_new:Npn\emFi@pdfwritearray#1{\pdf_object_unnamed_write:ne{array}{#1}}
+\cs_new:Npn\emFi@pdfwritefstream#1#2{\pdf_object_unnamed_write:ne{fstream}{{#1}{#2}}}
 \ExplSyntaxOff
 \else
  \def\IfPDFManagementActiveTF#1#2{#2}
+ \def\emFi@pdfobjectreflast{\the\pdflastobj\ltx@space 0 R}
+ \def\emFi@pdfwritedict#1{\immediate\pdfobj{<<#1>>}}
+ \def\emFi@pdfwritearray#1{\immediate\pdfobj{[#1]}}
+ \def\emFi@pdfwritefstream#1#2{\immediate\pdfobj stream attr{#1}file{#2}}
 \fi 
 \def\embedfilefinish{%
   \ifEmFi@finished
@@ -1583,13 +1594,9 @@ You need Acrobat Reader 8 or higher.
           \def\do##1##2{%
            (##1)##2%
            }%
-          \immediate\pdfobj{%
-           <<%
-             /Names[\EmFi@list]%
-           >>%
-          }%
+          \emFi@pdfwritedict{/Names[\EmFi@list]}
            \pdfnames{%
-          /EmbeddedFiles \the\pdflastobj\ltx@space 0 R%
+          /EmbeddedFiles \emFi@pdfobjectreflast%
          }}%
       \endgroup
       \begingroup
@@ -1603,11 +1610,9 @@ You need Acrobat Reader 8 or higher.
            \def\do##1##2{%
             \ltx@space##2%
             }%
-           \immediate\pdfobj{%
-            [\EmFi@list]%
-           }%
+           \emFi@pdfwritearray{\EmFi@list}%
            \pdfcatalog{%
-            /AF \the\pdflastobj\ltx@space 0 R%
+            /AF \emFi@pdfobjectreflast%
           }%
          } 
       \endgroup
@@ -1667,8 +1672,7 @@ You need Acrobat Reader 8 or higher.
             /O ##1%
           \fi
         }%
-        \immediate\pdfobj{%
-          <<%
+        \emFi@pdfwritedict{%
             \ifx\EmFi@schema\ltx@empty
             \else
               /Schema<<\EmFi@schema>>%
@@ -1687,7 +1691,6 @@ You need Acrobat Reader 8 or higher.
             \else
               /Sort<<\EmFi@temp>>%
             \fi
-          >>%
         }
         \IfPDFManagementActiveTF
          {%
@@ -1695,7 +1698,7 @@ You need Acrobat Reader 8 or higher.
          }%
          {%
            \pdfcatalog{%
-            /Collection \the\pdflastobj\ltx@space0 R%
+            /Collection \emFi@pdfobjectreflast%
          }%   
         }%
       \fi
@@ -1995,6 +1998,9 @@ You need Acrobat Reader 8 or higher.
 %   \item Adapted the error message to luatex 
 %   \item The /UF key in the filespec dictionary is now set by default (PR\#6)
 %   \end{Version}
+%   \begin{Version}{2025-10-27 v2.13}
+%   \item Add support for PDF management
+%   \end{Version}
 % \end{History}
 %
 % \PrintIndex
@@ -2004,7 +2010,7 @@ You need Acrobat Reader 8 or higher.
 endstream
 endobj
 6 0 obj
-<</Type/Filespec/F(embedfile.dtx)/UF(embedfile.dtx)/Desc(LaTeX\040docstrip\040source\040archive\040for\040package\040`embedfile')/EF<</F 5 0 R>>>>
+<< /Type/Filespec/F(embedfile.dtx)/UF(embedfile.dtx)/Desc(LaTeX\040docstrip\040source\040archive\040for\040package\040`embedfile')/EF<</F 5 0 R>> >>
 endobj
 7 0 obj
 <<
@@ -2043,7 +2049,7 @@ stream
 endstream
 endobj
 8 0 obj
-<</Type/Filespec/F(embedfile-test4.pvt)/UF(embedfile-test4.pvt)/Desc(LaTeX\040source)/AFRelationship/Source/EF<</F 7 0 R>>>>
+<< /Type/Filespec/F(embedfile-test4.pvt)/UF(embedfile-test4.pvt)/Desc(LaTeX\040source)/AFRelationship/Source/EF<</F 7 0 R>> >>
 endobj
 9 0 obj
 <<
@@ -2802,44 +2808,44 @@ endobj
 xref
 0 34
 0000000002 65535 f 
-0000072579 00000 n 
+0000073388 00000 n 
 0000000003 00000 f 
 0000000004 00000 f 
 0000000000 00000 f 
 0000000015 00000 n 
-0000059819 00000 n 
-0000059981 00000 n 
-0000060881 00000 n 
-0000061021 00000 n 
-0000072467 00000 n 
-0000072352 00000 n 
-0000071981 00000 n 
-0000106410 00000 n 
-0000108346 00000 n 
-0000110104 00000 n 
-0000110263 00000 n 
-0000072626 00000 n 
-0000072658 00000 n 
-0000072722 00000 n 
-0000073040 00000 n 
-0000073064 00000 n 
-0000073501 00000 n 
-0000086097 00000 n 
-0000086374 00000 n 
-0000093856 00000 n 
-0000094072 00000 n 
-0000104388 00000 n 
-0000104627 00000 n 
-0000106568 00000 n 
-0000108502 00000 n 
-0000110322 00000 n 
-0000110366 00000 n 
-0000110457 00000 n 
+0000060624 00000 n 
+0000060788 00000 n 
+0000061688 00000 n 
+0000061830 00000 n 
+0000073276 00000 n 
+0000073161 00000 n 
+0000072790 00000 n 
+0000107219 00000 n 
+0000109155 00000 n 
+0000110913 00000 n 
+0000111072 00000 n 
+0000073435 00000 n 
+0000073467 00000 n 
+0000073531 00000 n 
+0000073849 00000 n 
+0000073873 00000 n 
+0000074310 00000 n 
+0000086906 00000 n 
+0000087183 00000 n 
+0000094665 00000 n 
+0000094881 00000 n 
+0000105197 00000 n 
+0000105436 00000 n 
+0000107377 00000 n 
+0000109311 00000 n 
+0000111131 00000 n 
+0000111175 00000 n 
+0000111266 00000 n 
 trailer
 << /Size 34
 /Root 32 0 R
 /Info 33 0 R
 /ID [<9BD18DF3359C1216B83ADB4AA401CC9A> <9BD18DF3359C1216B83ADB4AA401CC9A>] >>
 startxref
-110589
+111398
 %%EOF
