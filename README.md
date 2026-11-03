@@ -3,8 +3,8 @@
 ## Version: 2025-10-27 v2.13
 
 This package embeds files in a PDF document, using the PDF format's embedding 
-operation (note the contrast with the attach operation used by the attachfile 
-and attachfile2 packages). Currently only pdfTeX and luaTeX in PDF mode are
+operation (note the contrast with the attach operation used by the [attachfile](https://www.ctan.org/pkg/attachfile) 
+and [attachfile2](https://www.ctan.org/pkg/attachfile2) packages). Currently only pdfTeX and luaTeX in PDF mode are
 supported. 
 
 ## Copyright (C)
